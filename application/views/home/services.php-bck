@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+     <!-- top head start -->
+     <?php $this->load->view('themes/frontend/common/top-head'); ?>
+     <!-- top head end -->
+   </head>
+   <body>
+      <!-- Navbar start -->
+      <?php $this->load->view('themes/frontend/common/header'); ?>
+
+      <!-- Navbar End -->
+      <div class="main">
+      <div class="wrapper">
+         <div class="container">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+               <div class="owl_1 owl-carousel owl-theme">
+                   <?php
+                     $qry = $this->db->where('status', 1)->get('cr_service_category')->result();
+                        foreach ($qry as $category) {
+                     ?>
+                     <div class="item">
+                        <li class="nav-item" role="presentation">
+                           <a class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><img src="<?php echo base_url(); ?>uploads/category/<?php echo $category->logo ?>"><?php echo $category->cate_name ?></a>
+                        </li>
+                     </div>
+                  <?php } ?>
+                  <!--<div class="item">-->
+                  <!--   <li class="nav-item" role="presentation">-->
+                  <!--      <a class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><img src="<?php echo base_url(); ?>assets/frontend/images/vl2.png"> Velocity Repair - Same day delivery</a>-->
+                  <!--   </li>-->
+                  <!--</div>-->
+                  <!--<div class="item">-->
+                  <!--   <li class="nav-item" role="presentation">-->
+                  <!--      <a class="nav-link" id="pills-skin-tab" data-bs-toggle="pill" data-bs-target="#pills-skin" type="button" role="tab" aria-controls="pills-skin"  aria-selected="false"><img src="<?php echo base_url(); ?>assets/frontend/images/DentingandPainting.png"> Denting and Painting</a>-->
+                  <!--   </li>-->
+                  <!--</div>-->
+                  <!--<div class="item">-->
+                  <!--   <li class="nav-item" role="presentation">-->
+                  <!--      <a class="nav-link" id="pills-hair-tab" data-bs-toggle="pill" data-bs-target="#pills-hair" type="button" role="tab" aria-controls="pills-hair" aria-selected="false"><img src="<?php echo base_url(); ?>assets/frontend/images/CarRepairService2.png"> Car Care Service</a>-->
+                  <!--   </li>-->
+                  <!--</div>-->
+                  <!--<div class="item">-->
+                  <!--   <li class="nav-item" role="presentation">-->
+                  <!--      <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false"> <img src="<?php echo base_url(); ?>assets/frontend/images/WheelCare_.png"> Wheel Care</a>-->
+                  <!--   </li>-->
+                  <!--</div>-->
+                  <!--<div class="item">-->
+                  <!--   <li class="nav-item" role="presentation">-->
+                  <!--      <a class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><img src="<?php echo base_url(); ?>assets/frontend/images/EngineCare2.png"> Engine Care</a>-->
+                  <!--   </li>-->
+                  <!--</div>-->
+                  <!--<div class="item">-->
+                  <!--   <li class="nav-item" role="presentation">-->
+                  <!--      <a class="nav-link" id="pills-skin-tab" data-bs-toggle="pill" data-bs-target="#pills-skin" type="button" role="tab" aria-controls="pills-skin"  aria-selected="false"><img src="<?php echo base_url(); ?>assets/frontend/images/DentingandPainting.png">  Denting and Painting</a>-->
+                  <!--   </li>-->
+                  <!--</div>-->
+               </div>
+            </ul>
+         </div>
+      </div>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8">
+               <div class="listings">
+                  <div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">Car Washing</h5>
+                        <p class="card-text">
+                           <b>Enjoy unparalled protection & shine with our advanced technology.</b>
+                        </p>
+                        <div class="listing">
+                           <div class="innerlisting">
+                              <div class="ifigure">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/wash.jpg">
+                              </div>
+                              <div class="icontent">
+                                 <strong>Quick Wash</strong>
+                                 <ul>
+                                    <li>Exterior Top wash </li>
+                                    <li>Pressure Washing </li>
+                                    <li>Engine Compartment Dry Mopping </li>
+                                    <li>Tyre Wash , Interior Mopping and Vacuuming</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="innerbooknow">
+                              <div class="booknowhours">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/watch.png" />
+                                 <span>1 Hour</span>
+                              </div>
+                              <div class="booknowbtn">
+                                 <a href="#" class="btn">Book Now</a>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="listing">
+                           <div class="innerlisting">
+                              <div class="ifigure">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/CarWashingDeepCleansing.png">
+                              </div>
+                              <div class="icontent">
+                                 <strong>Deep Cleansing </strong>
+                                 <ul>
+                                    <li>Exterior Top wash </li>
+                                    <li>Pressure Washing </li>
+                                    <li>Engine Compartment Dry Mopping </li>
+                                    <li>Tyre Wash , Interior Mopping and Vacuuming</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="innerbooknow">
+                              <div class="booknowhours">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/watch.png" />
+                                 <span>1 Hour</span>
+                              </div>
+                              <div class="booknowbtn">
+                                 <a href="#" class="btn">Book Now</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">Ceramic Coating</h5>
+                        <p class="card-text">
+                           <b>Enjoy unparalled protection & shine with our advanced technology.</b>
+                        </p>
+                        <div class="listing">
+                           <div class="innerlisting">
+                              <div class="ifigure">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/CeramicCoatingx.png">
+                              </div>
+                              <div class="icontent">
+                                 <strong>Quick Wash</strong>
+                                 <ul>
+                                    <li>Complete Paint correction  </li>
+                                    <li>Safely removal of minor scratches  </li>
+                                    <li>Exterior Car Wash  </li>
+                                    <li>2 layers of Coating </li>
+                                    <li>Nano Coating  </li>
+                                    <li>Ultra Shine Polish </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="innerbooknow">
+                              <div class="booknowhours">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/watch.png" />
+                                 <span>1 Hour</span>
+                              </div>
+                              <div class="booknowbtn">
+                                 <a href="#" class="btn">Book Now</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">Detailing - Interiors and Exteriors</h5>
+                        <p class="card-text">
+                           <b>Lorem ipsum dolor sit amet, consectetuer sathi haat badhana, sed diam nonummy nibh </b>
+                        </p>
+                        <div class="listing">
+                           <div class="innerlisting">
+                              <div class="ifigure">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/DetailingInteriorsandExteriors.png">
+                              </div>
+                              <div class="icontent">
+                                 <strong>Premium Interior</strong>
+                                 <ul>
+                                    <li>Shampoo wash, Vacuum cleaning</li>
+                                    <li>Sanding of Scratches, Swirl Mark Removal & Paint Protection, </li>
+                                    <li>Bumper & Tyre Dressing, Glass Cleaning </li>
+                                    <li>Complete Interior Cleaning including Seats, Roof , Floor, Side</li>
+                                    <li>Panels & Boot Area, Cleaning and Polish of Interior Plastic Parts.</li>
+                                    <li>GPAC - General Purpose Adhesive Cleaner, Machine Polish, Paste</li>
+                                    <li>Wax, Rubbing Compound, Foam-It & Degreaser, Spray Dresser"</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="innerbooknow">
+                              <div class="booknowhours">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/watch.png" />
+                                 <span>1 Hour</span>
+                              </div>
+                              <div class="booknowbtn">
+                                 <a href="#" class="btn">Book Now</a>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="listing">
+                           <div class="innerlisting">
+                              <div class="ifigure">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/DetailingInteriorsandExteriors1.png">
+                              </div>
+                              <div class="icontent">
+                                 <strong>Exterior Car Beautyfication</strong>
+                                 <ul>
+                                    <li>Shampoo wash, Vacuum cleaning</li>
+                                    <li>Clay Wiping & Tar Removal, Swirl Marks Removal, Paint </li>
+                                    <li> Protection, Bumper & Tyre Dressing, Glass Cleaning </li>
+                                    <li> GPAC - General Purpose Adhesive Cleaner, Machine Polish,</li>
+                                    <li> Paste Wax, Cleaner Clay (if required), Rubbing Compound (if required)"</li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="innerbooknow">
+                              <div class="booknowhours">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/watch.png" />
+                                 <span>1 Hour</span>
+                              </div>
+                              <div class="booknowbtn">
+                                 <a href="#" class="btn">Book Now</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">Paint Protection Film (PPF)</h5>
+                        <p class="card-text">
+                           <b>Invisible armour against chips & scratches for long lasting</b>
+                        </p>
+                        <div class="listing">
+                           <div class="innerlisting">
+                              <div class="ifigure">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/PaintProtectionFilm.png">
+                              </div>
+                              <div class="icontent">
+                                 <strong>Quick Wash</strong>
+                                 <ul>
+                                    <li>Complete Paint correction  </li>
+                                    <li>Safely removal of minor scratches  </li>
+                                    <li>Exterior Car Wash  </li>
+                                    <li>2 layers of Coating </li>
+                                    <li>Nano Coating  </li>
+                                    <li>Ultra Shine Polish </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="innerbooknow">
+                              <div class="booknowhours">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/watch.png" />
+                                 <span>1 Hour</span>
+                              </div>
+                              <div class="booknowbtn">
+                                 <a href="#" class="btn">Book Now</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">Car Wax</h5>
+                        <p class="card-text">
+                           <b>Enjoy unparalled protection & shine with our advanced technology.</b>
+                        </p>
+                        <div class="listing">
+                           <div class="innerlisting">
+                              <div class="ifigure">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/CarWax.png">
+                              </div>
+                              <div class="icontent">
+                                 <strong>Quick Wash</strong>
+                                 <ul>
+                                    <li>Car Wash  </li>
+                                    <li>Body Wax   </li>
+                                    <li>Dashboard & Tyre polish  </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="innerbooknow">
+                              <div class="booknowhours">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/watch.png" />
+                                 <span>1 Hour</span>
+                              </div>
+                              <div class="booknowbtn">
+                                 <a href="#" class="btn">Book Now</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">Anti Rust Coating</h5>
+                        <p class="card-text">
+                           <b>Extent the life of your vehicle with proven rust protection.</b>
+                        </p>
+                        <div class="listing">
+                           <div class="innerlisting">
+                              <div class="ifigure">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/AntiRustCoating.png">
+                              </div>
+                              <div class="icontent">
+                                 <strong>Quick Wash</strong>
+                                 <ul>
+                                    <li>Protective Anti-Corrosion Treatment  </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="innerbooknow">
+                              <div class="booknowhours">
+                                 <img src="<?php echo base_url(); ?>assets/frontend/images/watch.png" />
+                                 <span>1 Hour</span>
+                              </div>
+                              <div class="booknowbtn">
+                                 <a href="#" class="btn">Book Now</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="card shadow withprodcut">
+                  <div class="card-body">
+                     <div class="bookproducts">
+                        <div class="productimg">
+                           <img src="<?php echo base_url(); ?>assets/frontend/images/productimg.png">
+                        </div>
+                        <div class="proddis">
+                           <div class="ptitle">
+                              <span class="normal">BMW M340i <b>Petrol </b></span> <span class="chanegs"> Change</span>
+                           </div>
+                           <div class="proddisinner">
+                              <div class="toast show align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+                                 <div class="d-flex">
+                                    <div class="toast-body">
+                                       Ceramic Coating
+                                    </div>
+                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                 </div>
+                                 <div class="d-flex">
+                                    <div class="toast-body">
+                                       Deep Cleansing 
+                                    </div>
+                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="bookinfg">
+                              <button type="submit" class="btn btn-primary px-4 btn-lg" id="getaquote">Get a Quote</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card shadow emptyprodcut d-none">
+                  <div class="card-body">
+                     <div class="bookproducts">
+                        <div class="productimg">
+                           <img src="<?php echo base_url(); ?>assets/frontend/images/productimg.png">
+                        </div>
+                        <div class="proddis">
+                           <div class="ptitle">
+                              <span class="normal">BMW M340i <b>Petrol </b></span> <span class="chanegs"> Change</span>
+                           </div>
+                           <div class="noproduct">
+                              <img src="<?php echo base_url(); ?>assets/frontend/images/noproduct.png">
+                              <p> Go ahead and book a service for your car.  </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card shadow mwithprodcut d-none">
+                  <div class="card-body">
+                     <div class="bookproducts">
+                        <div class="productimg">
+                           <img src="<?php echo base_url(); ?>assets/frontend/images/productimg.png">
+                        </div>
+                        <div class="proddis">
+                           <div class="ptitle">
+                              <span class="normal">BMW M340i <b>Petrol </b></span> <span class="chanegs"> Change</span>
+                           </div>
+                           <div class="proddisinner">
+                              <div class="toast show align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+                                 <div class="d-flex">
+                                    <div class="toast-body">
+                                       Ceramic Coating
+                                    </div>
+                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                 </div>
+                                 <div class="d-flex">
+                                    <div class="toast-body">
+                                       Deep Cleansing 
+                                    </div>
+                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-group mt-3">
+                              <input type="type" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Mobile no:">
+                           </div>
+                           <div class="bookinfg">
+                              <button type="submit" class="btn btn-primary px-4 btn-lg" id="getaquote">Get Otp</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card shadow otpwithprodcut d-none">
+                  <div class="card-body">
+                     <div class="bookproducts">
+                        <div class="productimg">
+                           <img src="<?php echo base_url(); ?>assets/frontend/images/productimg.png">
+                        </div>
+                        <div class="proddis">
+                           <div class="ptitle">
+                              <span class="normal">BMW M340i <b>Petrol </b></span> <span class="chanegs"> Change</span>
+                           </div>
+                           <div class="proddisinner">
+                              <div class="toast show align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+                                 <div class="d-flex">
+                                    <div class="toast-body">
+                                       Ceramic Coating
+                                    </div>
+                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                 </div>
+                                 <div class="d-flex">
+                                    <div class="toast-body">
+                                       Deep Cleansing 
+                                    </div>
+                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-group mt-3">
+                              <input type="type" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter OTP">
+                           </div>
+                           <div class="alerts d-flex align-items-center" role="alert">
+                              <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 48 48" aria-hidden="true">
+                                 <circle class="circles" fill="#5bb543" cx="24" cy="24" r="22"></circle>
+                                 <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17"></path>
+                              </svg>
+                              <div>
+                                 OTP sent successfully
+                              </div>
+                           </div>
+                           <div class="bookinfg">
+                              <button type="submit" class="btn btn-primary px-4 btn-lg" id="getaquote">Verify</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card shadow emptyprodcut d-none">
+                  <div class="card-body">
+                     <div class="bookproducts">
+                        <div class="proddis">
+                           <div class="noproduct">
+                              <img src="<?php echo base_url(); ?>assets/frontend/images/success.png">
+                              <p> Thank you. </p>
+                              <p> we will contact you soon.</p>
+                           </div>
+                        </div>
+                        <div class="bookinfg">
+                           <button type="submit" class="btn btn-primary px-4 btn-lg" id="getaquote">Continue</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card shadow emptyprodcut d-none">
+               <div class="card-body intro contact bookproducts" >
+                    <h3>Experience The Best<br/>Car Services</h3>
+                    <p class="text-center">Get instant quotes for your car service</p>
+                    <form id="contact_form" name="contact_form" method="post">
+                      <div class=" row">
+                        <div class="col-md-12">
+                          <label>SELECT YOUR CAR MAKE</label>
+                          <select class="form-control form-select brand_id" id="" onchange="handleChange(this);" required="">
+                            <option value=""></option>
+                                                            <option value="1">Maruti Suzuki</option>
+                                                            <option value="2">Hyundai</option>
+                                                            <option value="3">Honda</option>
+                                                            <option value="4">Tata</option>
+                                                            <option value="5">Ford</option>
+                                                            <option value="6">Volkswagen</option>
+                                                            <option value="7">Mahindra</option>
+                                                            <option value="8">Renault</option>
+                                                            <option value="9">Chevorlet</option>
+                                                            <option value="10">Toyota</option>
+                                                            <option value="11">Skoda</option>
+                                                            <option value="12">Nissan</option>
+                                                            <option value="13">Fiat </option>
+                                                            <option value="14">Datsun</option>
+                                                            <option value="15">BMW</option>
+                                                            <option value="16">Kia</option>
+                                                            <option value="17">Audi</option>
+                                                            <option value="18">Mercedes</option>
+                                                            <option value="19">Jeep</option>
+                                                            <option value="20">Mitsubishi</option>
+                                                            <option value="21">MG</option>
+                                                            <option value="22">Land Rover</option>
+                                                            <option value="23">Jaguar</option>
+                                                            <option value="24">Volvo</option>
+                                                            <option value="25">Ssangyong</option>
+                                                            <option value="26">Isuzu</option>
+                                                            <option value="27">Mini</option>
+                                                            <option value="28">Force</option>
+                                                            <option value="29">Opel</option>
+                                                            <option value="30">Porsche</option>
+                                                            <option value="31">Daewoo</option>
+                                                            <option value="32">Hindustan Motors</option>
+                                                            <option value="33">Aston Martin</option>
+                                                            <option value="34">Citrone</option>
+                                                            <option value="35">Lexus</option>
+                                                            <option value="36">Bentley</option>
+                                                            <option value="37">DC</option>
+                                                            <option value="38">Ferrari</option>
+                                                            <option value="39">Maserati</option>
+                                                            <option value="40">Lamborgini</option>
+                                                            <option value="41">Rolls Royce</option>
+                                                            <option value="42">Photon</option>
+                                                            <option value="43">Jayem</option>
+                                                            <option value="44">Premier </option>
+                                                            <option value="45">Hummer</option>
+                                                            <option value="46">BYD</option>
+                                                      </select>
+                        </div>
+                        <div class="col-md-12">
+                          <label>SELECT YOUR CAR MODEL</label>
+                          <select class="form-control form-select modal_id" id="_car_modal_" required="">
+                            <option></option>
+                          </select>
+                        </div>
+                      </div>
+                      
+                      <button type="submit" class="btn btn-primary px-4 btn-lg" id="contatSubmit">Apply</button>
+                    </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Footer section start -->
+     <?php $this->load->view('themes/frontend/common/footer'); ?>
+      <!-- Footer section end -->
+      <script>
+         $(' .owl_1').owlCarousel({
+             loop: false,
+             margin:0,
+             responsiveClass: true, 
+             autoplayHoverPause: true,
+             nav: true,
+             autoplay: false,
+             autoWidth:true,
+             slideSpeed: 400,
+             paginationSpeed: 400,
+             autoplayTimeout: 3000,
+             responsive: {
+                 0: {
+                     items: 6,
+                     nav: true,
+                     loop: false
+                 },
+                 600: {
+                     items: 5,
+                     nav: true,
+                     loop: false
+                 },
+                 1000: {
+                     items: 7,
+                     nav: true,
+                     loop: false
+                 }
+             }
+         });
+   
+
+      </script>
+            <!-- <script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("myHeader");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script> -->
+   </body>
+</html>

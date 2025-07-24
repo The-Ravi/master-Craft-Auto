@@ -1,0 +1,56 @@
+# CodeIgniter specific
+application/logs/*
+!application/logs/index.html
+application/cache/*
+!application/cache/index.html
+application/sessions/*
+!application/sessions/index.html
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Vendor directories (if using Composer)
+vendor/
+
+# Node modules (if using npm/yarn)
+node_modules/
+
+# Large files and backups
+backup/
+*.zip
+*.rar
+*.7z
+
+# Large image files (keep smaller optimized versions)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+!**/favicon.*
+!**/logo.*
+!**/icon.*
