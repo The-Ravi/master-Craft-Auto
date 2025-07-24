@@ -44,13 +44,13 @@ backup/
 *.rar
 *.7z
 
-# Large image files (keep smaller optimized versions)
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.bmp
-*.tiff
-!**/favicon.*
-!**/logo.*
-!**/icon.*
+# Only exclude specific large image files (add specific filenames here if needed)
+# Example: assets/frontend/images/very-large-file.png
+
+# Keep all other images for website functionality
+# *.png
+# *.jpg
+# *.jpeg
+# *.gif
+# *.bmp
+# *.tiff
