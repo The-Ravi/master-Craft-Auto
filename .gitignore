@@ -32,6 +32,9 @@ Thumbs.db
 .env.local
 .env.production
 
+# Database configuration (contains sensitive credentials)
+application/config/database.php
+
 # Vendor directories (if using Composer)
 vendor/
 
