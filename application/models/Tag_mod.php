@@ -76,7 +76,7 @@ class Tag_mod extends CI_Model
         if (!$title_exists && !empty($default_title)) {
             $this->db->insert('cr_page_tags', [
                 'page' => $page,
-                'tag_type' => 'seo',
+                'tag_type' => 'title',
                 'tag_key' => $page . '_title',
                 'tag_value' => $default_title
             ]);
@@ -92,7 +92,7 @@ class Tag_mod extends CI_Model
         if (!$desc_exists && !empty($default_description)) {
             $this->db->insert('cr_page_tags', [
                 'page' => $page,
-                'tag_type' => 'seo',
+                'tag_type' => 'meta',
                 'tag_key' => $page . '_meta_description',
                 'tag_value' => $default_description
             ]);
