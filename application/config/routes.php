@@ -113,8 +113,7 @@ $route['gallery'] = 'Home_public/gallery';
 $route['gallery/(:any)'] = 'Home_public/gallery/$1';
 $route['video'] = 'Home_public/video';
 $route['video/(:any)'] = 'Home_public/video/$1';
-$route['centers'] = 'Home_public/centers';
-$route['centers/search'] = 'Home_public/search_centers';
+
 
 
 $route['insurance'] = 'Home_public/insurance';
