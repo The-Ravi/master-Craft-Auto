@@ -182,6 +182,9 @@ nav.navbar ul.navbar-nav li.nav-item:first-child {
             <li class="nav-item">
               <a class="nav-link" href="<?php echo base_url(); ?>gallery">Gallery</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo base_url(); ?>blog">Blog</a>
+            </li>
             <li data-menuanchor="seven" class="nav-item">
               <a class="nav-link" href="#seven">Contact Us</a>
             </li>

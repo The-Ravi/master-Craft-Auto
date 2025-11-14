@@ -93,7 +93,7 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
                   <div class="secondslider ">
                     <h2><?= get_tag($tags, 'aboutus_h2_1') ?></h2>
                     <div class="strip">
-                      <img src="https://agenziaviaggiinnepal.com/craft/assets/frontend/images/stripsline.png">
+                      <img src="https://www.mastercraftauto.co.in/assets/frontend/images/stripsline.png">
                     </div>
                   
                   </div>

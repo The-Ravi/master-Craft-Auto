@@ -85,7 +85,7 @@ ul.dropdown-menu li a {
                  <?php echo get_tag($tags, 'gallery_h2_main', 'Mastercraft Photo Gallery'); ?>
                </h2>
                <div class="strip">
-                  <img src="https://agenziaviaggiinnepal.com/craft/assets/frontend/images/strip_s.png"
+                  <img src="https://www.mastercraftauto.co.in/assets/frontend/images/strip_s.png"
                        alt="<?php echo get_tag($tags, 'gallery_strip_img_alt', 'Gallery Decorative Strip'); ?>">
                </div>
                <span>

@@ -112,7 +112,7 @@ class CI_DB_mysqli_driver extends CI_DB {
 	 * Database connection
 	 *
 	 * @param	bool	$persistent
-	 * @return	object
+	 * @return	object|bool
 	 */
 	public function db_connect($persistent = FALSE)
 	{
@@ -460,7 +460,7 @@ class CI_DB_mysqli_driver extends CI_DB {
 	 * Returns an object with field data
 	 *
 	 * @param	string	$table
-	 * @return	array
+	 * @return	array|bool
 	 */
 	public function field_data($table)
 	{

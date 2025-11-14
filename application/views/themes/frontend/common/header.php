@@ -244,11 +244,15 @@ nav.navbar.navbar-expand-lg ul.navbar-nav > li > a.nav-link{
                      <a class="nav-link" href="<?php echo base_url(); ?>services">Our Services</a>
 
                   </li>
-                    <li class="nav-item"><a class="nav-link"  href="<?php echo base_url(); ?>gallery">Gallery </a></li>
+                   <li class="nav-item"><a class="nav-link"  href="<?php echo base_url(); ?>gallery">Gallery </a></li>
 
                    </li>
 
-                  <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>blogs">Blogs</a></li>
+                  <li class="nav-item">
+
+                     <a class="nav-link" href="<?php echo base_url(); ?>blog">Blog</a>
+
+                  </li>
 
                   <li data-menuanchor="seven" class="nav-item">
 
@@ -336,7 +340,7 @@ nav.navbar.navbar-expand-lg ul.navbar-nav > li > a.nav-link{
 
       <?php if ($this->uri->segment(1)=='service-details'): ?>
 
-         <div class="heroinnerbanner" style="background:url(https://agenziaviaggiinnepal.com/craft/backup-html/images/servicesbanner.jpg);background-size: cover;" >
+         <div class="heroinnerbanner" style="background:url(https://www.mastercraftauto.co.in/assets/frontend/images/servicesbanner.jpg);background-size: cover;" >
 
             <div class="container">
 
