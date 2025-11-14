@@ -34,7 +34,7 @@ Your blog system is now ready! Here's what has been set up:
 5. Click "Go" or "Execute"
 
 This will:
-- Create the `blogs` table with all necessary fields
+- Create the `cr_blogs` table with all necessary fields
 - Add 3 sample blog posts to get you started
 
 ### Step 2: Create Upload Directory
@@ -68,7 +68,7 @@ Example: `https://your-domain.com/blog/view/welcome-to-our-blog`
 
 ### Database Structure
 
-The `blogs` table includes:
+The `cr_blogs` table includes:
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -88,7 +88,7 @@ The `blogs` table includes:
 You can add blog posts directly via SQL:
 
 ```sql
-INSERT INTO `blogs` 
+INSERT INTO `cr_blogs` 
 (`title`, `slug`, `content`, `excerpt`, `author`, `status`, `created_at`) 
 VALUES
 (

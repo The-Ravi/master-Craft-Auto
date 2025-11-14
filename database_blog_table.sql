@@ -4,10 +4,10 @@
 -- ============================================
 
 -- Drop table if exists (optional - comment out if you don't want to drop)
--- DROP TABLE IF EXISTS `blogs`;
+-- DROP TABLE IF EXISTS `cr_blogs`;
 
--- Create blogs table
-CREATE TABLE `blogs` (
+-- Create cr_blogs table
+CREATE TABLE `cr_blogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE `blogs` (
 -- ============================================
 
 -- Sample Blog Post 1
-INSERT INTO `blogs` (`title`, `slug`, `content`, `excerpt`, `author`, `status`, `created_at`) VALUES
+INSERT INTO `cr_blogs` (`title`, `slug`, `content`, `excerpt`, `author`, `status`, `created_at`) VALUES
 (
   'Welcome to Our Blog',
   'welcome-to-our-blog',

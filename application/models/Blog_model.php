@@ -6,7 +6,7 @@
 
 class Blog_model extends CI_Model
 {
-    private $table = 'blogs';
+    private $table = 'cr_blogs';
 
     public function __construct()
     {
