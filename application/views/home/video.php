@@ -267,7 +267,7 @@ ul.dropdown-menu li a {
 <!-- end addTocarypop -->
       
      <!-- Footer section start -->
-     <?php $this->load->view('themes/frontend/common/footer'); ?>
+     <?php $this->load->view('themes/frontend/common/footer', isset($tags) ? array('tags' => $tags) : array()); ?>
       <!-- Footer section end -->
       <script>
          $(' .owl_1').owlCarousel({

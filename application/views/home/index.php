@@ -68,6 +68,15 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
     display: block;
 }
 
+/* Ensure consistent spacing for all nav items */
+nav.navbar ul.navbar-nav li.nav-item {
+    margin-left: 30px !important;
+}
+
+nav.navbar ul.navbar-nav li.nav-item:first-child {
+    margin-left: 0 !important;
+}
+
   </style>
      <style>
           @media (max-width:767px){
@@ -149,22 +158,18 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
         </button>
         <div class="collapse navbar-collapse  justify-content-end" id="navbarSupportedContent">
           <ul id="menu" class="navbar-nav mb-2 mb-lg-0">
-            <li data-menuanchor="firstPage" class=" nav-item ">
-              <a class="nav-link" href="#firstPage"></a>
+            <li data-menuanchor="firstPage" class="nav-item active">
+              <a class="nav-link" href="#firstPage">Home</a>
             </li>
-            <li data-menuanchor="secondPage" class=" nav-item ">
-              <a class="nav-link" href="#secondPage">Home</a>
+            <li data-menuanchor="3rdPage" class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" href="<?php echo base_url(); ?>#3rdPage">Our Story</a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="<?php echo base_url(); ?>aboutus">About Us</a></li>
+                <li><a class="dropdown-item" href="<?php echo base_url(); ?>testimonials">Testimonials</a></li>
+                <!--li><a class="dropdown-item" href="<?php echo base_url(); ?>gallery">Gallery</a></li-->
+                <li><a class="dropdown-item" href="<?php echo base_url(); ?>faq">FAQs</a></li>
+              </ul>
             </li>
-            <li data-menuanchor="3rdPage" class="active nav-item dropdown">
-
-                     <a class="nav-link dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" href="<?php echo base_url(); ?>#3rdPage">Our Story </a>
-                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="<?php echo base_url(); ?>aboutus">  About Us    </a></li>
-    <li><a class="dropdown-item" href="<?php echo base_url(); ?>testimonials">Testimonials </a></li>
-    <!--li><a class="dropdown-item" href="<?php echo base_url(); ?>gallery">Gallery </a></li!-->
-    <li><a class="dropdown-item" href="<?php echo base_url(); ?>faq">FAQs </a></li>
-  </ul> 
-                  </li>
             <li data-menuanchor="fourth" class="nav-item">
               <a class="nav-link" href="#fourth">Our Promise</a>
             </li>
@@ -174,10 +179,9 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
             <li data-menuanchor="six" class="nav-item">
               <a class="nav-link" href="<?php echo base_url(); ?>services/">Our Services</a>
             </li>
-             <li data-menuanchor="centers" class="nav-item">
-                <a class="nav-link" href="<?php echo base_url(); ?>centers">Locations</a>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo base_url(); ?>gallery">Gallery</a>
             </li>
-              <li class="nav-item"><a class="nav-link"  href="<?php echo base_url(); ?>gallery">Gallery </a></li>
             <li data-menuanchor="seven" class="nav-item">
               <a class="nav-link" href="#seven">Contact Us</a>
             </li>
@@ -527,99 +531,97 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
         <div class="carousel-inner"  >
           <div class="carousel-item active" style="background:url(<?php echo base_url(); ?>assets/frontend/images/slider6.jpg);background-size: cover;">
             <h2 data-aos="fade-up"  data-aos-duration="500">
-              <?php echo get_tag('section5', 'h2', 'main_carousel_active_h2'); ?>
-              <span><?php echo get_tag('section5', 'h2', 'main_carousel_active_h2_span1'); ?></span>
-              <span><?php echo get_tag('section5', 'h2', 'main_carousel_active_h2_span2'); ?></span>
+              <?php echo get_tag($tags, 'home_section5_main_carousel_h2', 'Our Services <span>Crafting The Finer Details</span>'); ?>
             </h2>
             <div class="strip">
               <img src="<?php echo base_url(); ?>assets/frontend/images/strip_s.png" data-aos="fade-up"  data-aos-duration="500"
-                   alt="<?php echo get_tag('section5', 'alt', 'strip_img'); ?>">
+                   alt="<?php echo get_tag($tags, 'home_section5_strip_img_alt', 'Decorative strip'); ?>">
             </div>
             <div class="service-covermovile" data-aos="fade-up"  data-aos-duration="500">
               <img src="<?php echo base_url(); ?>assets/frontend/images/mbjeep1.png" data-aos="fade-up"
-                   alt="<?php echo get_tag('section5', 'alt', 'mbjeep1_img'); ?>">
+                   alt="<?php echo get_tag($tags, 'home_section5_mbjeep1_img_alt', 'Mobile jeep image'); ?>">
             </div>
             <div class="service-cover" data-aos="fade-up"  data-aos-duration="500">
               <img src="<?php echo base_url(); ?>assets/frontend/images/jeep.png" data-aos="fade-up"  data-aos-duration="500" height="386"
-                   alt="<?php echo get_tag('section5', 'alt', 'jeep_img'); ?>">
+                   alt="<?php echo get_tag($tags, 'home_section5_jeep_img_alt', 'Jeep service image'); ?>">
               <div class="paint-protection">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'paint_protection_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_paint_protection_h3', 'Paint Protection'); ?>
                   <div class="circle red"></div>
                   <div class="tooltipstext">
-                    <?php echo get_tag('section5', 'h4', 'paint_protection_h4'); ?>
+                    <?php echo get_tag($tags, 'home_section5_paint_protection_h4', 'Advanced protective coating for your vehicle'); ?>
                   </div>
                 </h3>
               </div>
               <div class="detailing ">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'detailing_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_detailing_h3', 'Detailing - Exterior & Interior'); ?>
                   <div class="circle red"></div>
                   <div class="tooltipstext">
-                    <?php echo get_tag('section5', 'h4', 'detailing_h4'); ?>
+                    <?php echo get_tag($tags, 'home_section5_detailing_h4', 'Complete interior and exterior detailing services'); ?>
                   </div>
                 </h3>
               </div>
               <div class="restoration">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'restoration_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_restoration_h3', 'Full Body Paint'); ?>
                   <div class="circle red"></div>
                   <div class="tooltipstext">
-                    <?php echo get_tag('section5', 'h4', 'restoration_h4'); ?>
+                    <?php echo get_tag($tags, 'home_section5_restoration_h4', 'Professional full body paint restoration'); ?>
                   </div>
                 </h3>
               </div>
               <div class="coating">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'coating_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_coating_h3', 'Ceramic Coating'); ?>
                   <div class="circle red"></div>
                   <div class="tooltipstext">
-                    <?php echo get_tag('section5', 'h4', 'coating_h4'); ?>
+                    <?php echo get_tag($tags, 'home_section5_coating_h4', 'Premium ceramic coating for lasting protection'); ?>
                   </div>
                 </h3>
               </div>
               <div class="filo">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'filo_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_filo_h3', 'Paint Protection Film (PPF)'); ?>
                   <div class="circle red"></div>
                   <div class="tooltipstext">
-                    <?php echo get_tag('section5', 'h4', 'filo_h4'); ?>
+                    <?php echo get_tag($tags, 'home_section5_filo_h4', 'Invisible paint protection film application'); ?>
                   </div>
                 </h3>
               </div>
               <div class="alloy-wheel">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'alloy_wheel_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_alloy_wheel_h3', 'Alloy Wheel Dressing'); ?>
                   <div class="circle red"></div>
                   <div class="tooltipstext">
-                    <?php echo get_tag('section5', 'h4', 'alloy_wheel_h4'); ?>
+                    <?php echo get_tag($tags, 'home_section5_alloy_wheel_h4', 'Professional alloy wheel cleaning and dressing'); ?>
                   </div>
                 </h3>
               </div>
               <div class="headlamp">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'headlamp_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_headlamp_h3', 'Headlamp Restoration'); ?>
                   <div class="circle red"></div>
                   <div class="tooltipstext">
-                    <?php echo get_tag('section5', 'h4', 'headlamp_h4'); ?>
+                    <?php echo get_tag($tags, 'home_section5_headlamp_h4', 'Restore clarity to your headlamps'); ?>
                   </div>
                 </h3>
               </div>
               <div class="engine">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'engine_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_engine_h3', 'Engine Dressing'); ?>
                   <div class="circle red"></div>
                   <div class="tooltipstext">
-                    <?php echo get_tag('section5', 'h4', 'engine_h4'); ?>
+                    <?php echo get_tag($tags, 'home_section5_engine_h4', 'Engine bay cleaning and dressing service'); ?>
                   </div>
                 </h3>
               </div>
               <div class="anti-rust">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'anti_rust_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_anti_rust_h3', 'Rust Shield Coating'); ?>
                   <div class="circle red"></div>
                   <div class="tooltipstext">
-                    <?php echo get_tag('section5', 'h4', 'anti_rust_h4'); ?>
+                    <?php echo get_tag($tags, 'home_section5_anti_rust_h4', 'Protective rust prevention coating'); ?>
                   </div>
                 </h3>
               </div>
@@ -627,70 +629,69 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
           </div>
           <div class="carousel-item repairitm" style="background:url(<?php echo base_url(); ?>assets/frontend/images/slider-6.jpg);background-size: cover;">
             <h2 data-aos="fade-up"  data-aos-duration="500">
-              <?php echo get_tag('section5', 'h2', 'carousel_repair_h2'); ?>
-              <span><?php echo get_tag('section5', 'h2', 'carousel_repair_h2_span'); ?></span>
+              <?php echo get_tag($tags, 'home_section5_repair_carousel_h2', 'Our Services <span>Repair Services</span>'); ?>
             </h2>
             <div class="strip">
               <img src="<?php echo base_url(); ?>assets/frontend/images/strip_s.png"data-aos="fade-up"  data-aos-duration="500"
-                   alt="<?php echo get_tag('section5', 'alt', 'carousel_repair_strip_img'); ?>">
+                   alt="<?php echo get_tag($tags, 'home_section5_repair_strip_img_alt', 'Repair services strip'); ?>">
             </div>
-            <p class="restore"><?php echo get_tag('section5', 'h4', 'carousel_repair_restore_h4'); ?></p>
+            <p class="restore"><?php echo get_tag($tags, 'home_section5_repair_restore_h4', 'Restore Your Car To Its Former Glory'); ?></p>
             <div class="service-covermovile" data-aos="fade-up"  data-aos-duration="500">
               <img src="<?php echo base_url(); ?>assets/frontend/images/mbc.png" data-aos="fade-up"
-                   alt="<?php echo get_tag('section5', 'alt', 'repair_mbc_img'); ?>">
+                   alt="<?php echo get_tag($tags, 'home_section5_repair_mbc_img_alt', 'Mobile car repair image'); ?>">
             </div>
             <div class="service-cover" data-aos="fade-up"  data-aos-duration="500"> 
               <img src="<?php echo base_url(); ?>assets/frontend/images/car.png" data-aos="fade-up"  data-aos-duration="500" height="329"
-                   alt="<?php echo get_tag('section5', 'alt', 'repair_car_img'); ?>">
+                   alt="<?php echo get_tag($tags, 'home_section5_repair_car_img_alt', 'Car repair service image'); ?>">
               <div class="front-bumper">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'front_bumper_h3'); ?>
-                  <div class="tooltipstext"><?php echo get_tag('section5', 'h4', 'front_bumper_h4'); ?></div>
+                  <?php echo get_tag($tags, 'home_section5_front_bumper_h3', 'Front Bumper'); ?>
+                  <div class="tooltipstext"><?php echo get_tag($tags, 'home_section5_front_bumper_h4', 'Front bumper repair and painting'); ?></div>
                 </h3>
               </div>
               <div class="bonnet">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'bonnet_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_bonnet_h3', 'Bonnet'); ?>
                 </h3>
               </div>
               <div class="rear-door">
                 <h3 class="tooltips">
-                  <?php echo get_tag('section5', 'h3', 'rear_door_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section5_rear_door_h3', 'Rear Door'); ?>
                                 </h3>
             </div>
             <div class="roof">
               <h3 class="tooltips">
-                <?php echo get_tag('section5', 'h3', 'roof_h3'); ?>
+                <?php echo get_tag($tags, 'home_section5_roof_h3', 'Roof'); ?>
               </h3>
             </div>
             <div class="boot">
               <h3 class="tooltips">
-                <?php echo get_tag('section5', 'h3', 'boot_h3'); ?>
+                <?php echo get_tag($tags, 'home_section5_boot_h3', 'Boot'); ?>
               </h3>
             </div>
             <div class="front-door">
               <h3 class="tooltips">
-                <?php echo get_tag('section5', 'h3', 'front_door_h3'); ?>
+                <?php echo get_tag($tags, 'home_section5_front_door_h3', 'Front Door'); ?>
               </h3>
             </div>
             <div class="fender">
               <h3 class="tooltips">
-                <?php echo get_tag('section5', 'h3', 'fender_h3'); ?>
+                <?php echo get_tag($tags, 'home_section5_fender_h3', 'Fender'); ?>
               </h3>
             </div>
             <div class="quarter">
               <h3 class="tooltips">
-                <?php echo get_tag('section5', 'h3', 'quarter_panel_h3'); ?>
+                <?php echo get_tag($tags, 'home_section5_quarter_panel_h3', 'Quarter Panel'); ?>
               </h3>
             </div>
             <div class="rear-bumper">
               <h3 class="tooltips">
-                <?php echo get_tag('section5', 'h3', 'rear_bumper_h3'); ?>
+                <?php echo get_tag($tags, 'home_section5_rear_bumper_h3', 'Rear Bumper'); ?>
               </h3>
             </div>
             <div class="running-board">
               <h3 class="tooltips">
-                <?php echo get_tag('section5', 'h3', 'running_board_h3'); ?>
+                <?php echo get_tag($tags, 'home_section5_running_board_h3', 'Running Board'); ?>
               </h3>
             </div>
           </div>
@@ -698,11 +699,11 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlss" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden"><?php echo get_tag('section5', 'h5', 'carousel_prev_label_h5'); ?></span>
+        <span class="visually-hidden"><?php echo get_tag($tags, 'home_section5_carousel_prev_label_h5', 'Previous'); ?></span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlss" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden"><?php echo get_tag('section5', 'h5', 'carousel_next_label_h5'); ?></span>
+        <span class="visually-hidden"><?php echo get_tag($tags, 'home_section5_carousel_next_label_h5', 'Next'); ?></span>
       </button>
     </div>
   </div>
@@ -716,7 +717,7 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
         <div class="col-md-7" data-aos="fade-left">
           <div class="secondslider" >
             <h2>
-              <?php echo get_tag('section6', 'h2', 'contactus_main_h2'); ?>
+              <?php echo get_tag($tags, 'home_section6_contactus_main_h2', 'Contact Us'); ?>
             </h2>
             <p>Ready to transform your automotive <br>canvas into a masterpiece of radiant <br> colors and unmatched detailing? </p>
           </div>
@@ -725,7 +726,7 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
           <div class="card">
             <div class="card-body">
               <h3>
-                <?php echo get_tag('section6', 'h3', 'contact_card_h3'); ?>
+                <?php echo get_tag($tags, 'home_section6_contact_card_h3', 'Let\'s Connect'); ?>
               </h3>
               <form id="contact_form" name="contact_form" method="post">
                 <div class=" row">
@@ -782,16 +783,16 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary px-4 btn-lg" id="contatSubmit">
-                  <?php echo get_tag('section6', 'h4', 'contact_card_submit_h4'); ?>
+                  <?php echo get_tag($tags, 'home_section6_contact_card_submit_h4', 'Experience The Best Car Services'); ?>
                 </button>
               </form>
               <form action="#" method="post" id="createbookingOtp" style="display: none;">
                 <br>
                 <h3 class="heading-small" style="font-size: 18px;">
-                  <?php echo get_tag('section6', 'h3', 'otp_verify_heading_h3'); ?>
+                  <?php echo get_tag($tags, 'home_section6_otp_verify_heading_h3', 'Got another Question?'); ?>
                 </h3>
                 <p>
-                  <?php echo get_tag('section6', 'h4', 'otp_entry_h4'); ?>
+                  <?php echo get_tag($tags, 'home_section6_otp_entry_h4', 'Please enter the OTP sent to'); ?>
                   +91-<span class="entered_phone_no">9205114537</span> <br>
                 </p>
                 <div class="form-group mb-3">
@@ -807,18 +808,18 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
                 </div>
                 <div class="resend-otp1" style="display: flex;gap:10px;">
                   <span class="resend-otp-text">
-                    <?php echo get_tag('section6', 'h5', 'otp_resend_text_h5'); ?>
+                    <?php echo get_tag($tags, 'home_section6_otp_resend_text_h5', 'Didn\'t receive OTP?'); ?>
                   </span>
                   <span class="resend-otp-link" style="display: none;">
                       <a class="use-ajax" href="javascript:void(0)" id="resend-otp" data-once="ajax" onclick="resendOTP();">
-                        <?php echo get_tag('section6', 'h5', 'otp_resend_link_h5'); ?>
+                        <?php echo get_tag($tags, 'home_section6_otp_resend_link_h5', 'Resend OTP'); ?>
                       </a>
                   </span>:
                   <div id="timer" class="timer">0:59</div>
                 </div>
                 <div class="form-group text-center formsubbtn">
                   <button type="submit" class="btn btn-primary px-4 btn-lg">
-                    <?php echo get_tag('section6', 'h5', 'otp_submit_btn_h5'); ?>
+                    <?php echo get_tag($tags, 'home_section6_otp_submit_btn_h5', 'Verify & Submit'); ?>
                   </button> 
                 </div>
               </form>
@@ -834,13 +835,38 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
   <div class="intro fooetrs">
     <div class="container">
       <footer class="d-flex justify-content-between flex-column">
+        <!-- Professional Disclaimer at top of footer -->
+        <div class="disclaimer-mobile" style="text-align: center; padding: 15px 10px; margin-bottom: 25px; display: block !important; visibility: visible !important;">
+          <span style="color: #ff0000; font-weight: 600; margin-right: 8px; font-size: 1rem;">Disclaimer:</span>
+          <span style="color: #ffffff; font-size: 0.95rem; font-weight: 400; text-shadow: 0 1px 2px rgba(0,0,0,0.3); line-height: 1.4;">
+          Results vary based on vehicle condition, age, and usage. Service time is an estimate and may change.
+          </span>
+        </div>
+        
+        <!-- Mobile responsive styling for home page -->
+        <style>
+        @media (max-width: 768px) {
+           .disclaimer-mobile {
+              padding: 20px 15px !important;
+              margin-top: 40px !important;
+              margin-bottom: 40px !important;
+              font-size: 0.9rem !important;
+              line-height: 1.6 !important;
+           }
+           /* Ensure logo doesn't overlap with disclaimer */
+           .col-6 .navbar-brand {
+              margin-bottom: 20px !important;
+           }
+        }
+        </style>
+        
         <div class="row" data-aos="fade-down">
           <div class="col-6">
             <a class="navbar-brand" href="#">
-              <img src="<?php echo base_url(); ?>assets/frontend/images/logo.png" width="100" height="" alt="<?php echo get_tag('section7', 'alt', 'logo_img_alt'); ?>">
+              <img src="<?php echo base_url(); ?>assets/frontend/images/logo.png" width="100" height="" alt="<?php echo get_tag($tags, 'home_section7_logo_img_alt', 'Mastercraft Auto Logo'); ?>">
             </a>
             <p class="overviewf">
-              <?php echo get_tag('section7', 'h4', 'footer_overview_h4'); ?>
+              <?php echo get_tag($tags, 'home_section7_footer_overview_h4', 'Welcome to Mastercraft, where precision meets passion in automotive craftsmanship.'); ?>
             </p>
             <ul class="list-unstyled d-flex socila">
               <li class="ms-">
@@ -867,53 +893,53 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
           </div>
           <div class="col-3">
             <h5>
-              <?php echo get_tag('section7', 'h5', 'footer_quicklink_h5'); ?>
+              <?php echo get_tag($tags, 'home_section7_footer_quicklink_h5', 'Quick Link'); ?>
             </h5>
             <ul class="nav flex-column">
               <li class="nav-item mb-2" data-menuanchor="3rdPage">
                 <a href="<?php echo base_url(); ?>aboutus" class="nav-link p-0 ">
-                  <?php echo get_tag('section7', 'h5', 'footer_aboutus_h5'); ?>
+                  <?php echo get_tag($tags, 'home_section7_footer_aboutus_h5', 'About Us'); ?>
                 </a>
               </li>
               <li class="nav-item mb-2"  data-menuanchor="six" >
                 <a href="#six" class="nav-link p-0 ">
-                  <?php echo get_tag('section7', 'h5', 'footer_services_h5'); ?>
+                  <?php echo get_tag($tags, 'home_section7_footer_services_h5', 'Services'); ?>
                 </a>
               </li>
               <li class="nav-item mb-2" data-menuanchor="seven">
                 <a href="#seven" class="nav-link p-0 ">
-                  <?php echo get_tag('section7', 'h5', 'footer_booknow_h5'); ?>
+                  <?php echo get_tag($tags, 'home_section7_footer_booknow_h5', 'Book Now'); ?>
                 </a>
               </li>
               <li class="nav-item mb-2" data-menuanchor="seven">
                 <a href="https://www.mastercraftauto.co.in/faq" class="nav-link p-0 ">
-                  <?php echo get_tag('section7', 'h5', 'footer_faqs_h5'); ?>
+                  <?php echo get_tag($tags, 'home_section7_footer_faqs_h5', 'FAQs'); ?>
                 </a>
               </li>
               <li class="nav-item mb-2" data-menuanchor="seven">
                 <a href="https://www.mastercraftauto.co.in/testimonials" class="nav-link p-0 ">
-                  <?php echo get_tag('section7', 'h5', 'footer_testimonials_h5'); ?>
+                  <?php echo get_tag($tags, 'home_section7_footer_testimonials_h5', 'Testimonials'); ?>
                 </a>
               </li>
               <li class="nav-item mb-2" data-menuanchor="seven">
                 <a href="https://www.mastercraftauto.co.in/insurance" class="nav-link p-0 ">
-                  <?php echo get_tag('section7', 'h5', 'footer_insurance_h5'); ?>
+                  <?php echo get_tag($tags, 'home_section7_footer_insurance_h5', 'Insurance'); ?>
                 </a>
               </li>
             </ul>
           </div>
           <div class="col-3 pl-0">
             <h5>
-              <?php echo get_tag('section7', 'h5', 'footer_contactus_h5'); ?>
+              <?php echo get_tag($tags, 'home_section7_footer_contactus_h5', 'Contact us'); ?>
             </h5>
             <ul class="nav flex-column">
               <li class="nav-item mb-2">
                 <a class="nav-link p-0 " href="https://g.co/kgs/URFhWZx" target="_blank">
-                  <?php echo get_tag('section7', 'h5', 'footer_addr_h5'); ?>
+                  <?php echo get_tag($tags, 'home_section7_footer_addr_h5', 'Gurgaon, Haryana'); ?>
                 </a>
               </li>
               <li class="nav-item mb-2 bricj">
-                <?php echo get_tag('section7', 'h5', 'footer_phone_h5'); ?>:
+                <?php echo get_tag($tags, 'home_section7_footer_phone_h5', 'Phone'); ?>:
                 <a href="tel:9873889977" class="nav-link p-0 ">9873889977</a>,
                 <a href="tel:9773592294" class="nav-link p-0 ">9773592294</a>,
               </li>
@@ -922,15 +948,16 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
               </li>
               <li class="nav-item mb-2">
                 <a href="mailto:bodyshop.mastercraftggn@nipponpaint.co.in" class="nav-link p-0">
-                  <?php echo get_tag('section7', 'h5', 'footer_email_h5'); ?>
+                  <?php echo get_tag($tags, 'home_section7_footer_email_h5', 'bodyshop.mastercraftggn@nipponpaint.co.in'); ?>
                 </a>
               </li>
             </ul>
           </div>
         </div>
+
         <div class="d-flex justify-content-between py-4 my-4 " data-aos="fade-down"> 
           <p class="Copyright">
-            <?php echo get_tag('section7', 'h5', 'footer_copyright_h5'); ?>
+            <?php echo get_tag($tags, 'home_section7_footer_copyright_h5', '© 2024 Mastercraft Auto. All rights reserved.'); ?>
           </p>
           <!--ul class="list-unstyled d-flex">
             <li class="nav-item mb-2">
@@ -956,32 +983,32 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
     <h5 id="offcanvasRightLabel">
-      <?php echo get_tag('offcanvas', 'h5', 'offcanvas_heading_h5'); ?>
+      <?php echo get_tag($tags, 'home_offcanvas_heading_h5', 'Menu'); ?>
     </h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
     <ul id="menu" class="nav nav-pills flex-column">
       <li data-menuanchor="firstPage" class="nav-item p-0">
-        <a class="nav-link" href="#firstPage"><?php echo get_tag('offcanvas', 'h5', 'menu_firstpage_h5'); ?></a>
+        <a class="nav-link" href="#firstPage"><?php echo get_tag($tags, 'home_offcanvas_menu_home_h5', 'Home'); ?></a>
       </li>
       <li data-menuanchor="secondPage" class="nav-item">
-        <a class="nav-link" href="#secondPage"><?php echo get_tag('offcanvas', 'h5', 'menu_home_h5'); ?></a>
+        <a class="nav-link" href="#secondPage"><?php echo get_tag($tags, 'home_offcanvas_menu_secondpage_h5', ''); ?></a>
       </li>
       <li data-menuanchor="3rdPage" class="nav-item">
-        <a class="nav-link" href="#3rdPage"><?php echo get_tag('offcanvas', 'h5', 'menu_ourstory_h5'); ?></a>
+        <a class="nav-link" href="#3rdPage"><?php echo get_tag($tags, 'home_offcanvas_menu_ourstory_h5', 'Our Story'); ?></a>
       </li>
       <li data-menuanchor="fourth" class="nav-item">
-        <a class="nav-link" href="#fourth"><?php echo get_tag('offcanvas', 'h5', 'menu_ourpromise_h5'); ?></a>
+        <a class="nav-link" href="#fourth"><?php echo get_tag($tags, 'home_offcanvas_menu_ourpromise_h5', 'Our Promise'); ?></a>
       </li>
       <li data-menuanchor="fifth" class="nav-item">
-        <a class="nav-link" href="#fifth"><?php echo get_tag('offcanvas', 'h5', 'menu_whychooseus_h5'); ?></a>
+        <a class="nav-link" href="#fifth"><?php echo get_tag($tags, 'home_offcanvas_menu_whychooseus_h5', 'Why Choose Us'); ?></a>
       </li>
       <li data-menuanchor="six" class="nav-item">
-        <a class="nav-link" href="#six"><?php echo get_tag('offcanvas', 'h5', 'menu_services_h5'); ?></a>
+        <a class="nav-link" href="#six"><?php echo get_tag($tags, 'home_offcanvas_menu_services_h5', 'Our Services'); ?></a>
       </li>
       <li data-menuanchor="seven" class="nav-item">
-        <a class="nav-link" href="#seven"><?php echo get_tag('offcanvas', 'h5', 'menu_contactus_h5'); ?></a>
+        <a class="nav-link" href="#seven"><?php echo get_tag($tags, 'home_offcanvas_menu_contactus_h5', 'Contact Us'); ?></a>
       </li>
     </ul>
   </div>
@@ -1316,16 +1343,37 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    <style>
+      /* Fix for FullPage.js scrolling issue */
+      .section.fifthss {
+        height: 100vh !important;
+        overflow: hidden !important;
+      }
+      .intro.fifths {
+        height: 100vh !important;
+        overflow: hidden !important;
+        display: flex;
+        align-items: center;
+      }
+    </style>
     <script type="text/javascript">
       var myFullpage = new fullpage('#fullpage', {
         ///sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
         anchors: ['firstPage', 'secondPage', '3rdPage', 'fourth', 'fifth', 'six', 'seven', 'eight'],
         menu: '#menu',
         //continuousVertical: true,
-        navigation: true
+        navigation: true,
+        autoScrolling: true,
+        fitToSection: true,
+        scrollBar: false,
+        scrollingSpeed: 350,
+        easingcss3: 'ease-out',
+        fitToSectionDelay: 200
+
        
       });
     
+
 
       
   </script>
@@ -1373,6 +1421,8 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
   verticalSwiping: false,
   draggable: false,
   autoplay: true,
+  swipe: false,
+  touchMove: false,
   responsive: [
     {
       breakpoint: 992,
@@ -1401,6 +1451,24 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
       }
     }
   ]
+});
+
+// Fix Slick carousel interference with FullPage.js
+$('.hc-saying__carousel__item').on('wheel', function(e) {
+  e.stopPropagation(); // Prevent event from bubbling up to FullPage.js
+  
+  // Allow FullPage.js to handle scrolling when at carousel boundaries
+  var $carousel = $(this);
+  var currentSlide = $carousel.slick('slickCurrentSlide');
+  var slideCount = $carousel.slick('getSlick').slideCount;
+  
+  if (e.originalEvent.deltaY > 0 && currentSlide >= slideCount - 3) {
+    // Scrolling down and at bottom of carousel - let FullPage.js take over
+    fullpage_api.moveSectionDown();
+  } else if (e.originalEvent.deltaY < 0 && currentSlide <= 0) {
+    // Scrolling up and at top of carousel - let FullPage.js take over
+    fullpage_api.moveSectionUp();
+  }
 });
 
 function animateToTop(e) {

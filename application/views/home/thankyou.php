@@ -146,7 +146,7 @@ Email: info.mastercraftggn@nipponpaint.co.in</p>
       </div>
 
       <!-- Footer section start -->
-     <?php $this->load->view('themes/frontend/common/footer'); ?>
+     <?php $this->load->view('themes/frontend/common/footer', isset($tags) ? array('tags' => $tags) : array()); ?>
       <!-- Footer section end -->
     
        

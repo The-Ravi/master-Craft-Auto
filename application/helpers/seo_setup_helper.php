@@ -168,6 +168,13 @@ if (!function_exists('setup_default_seo_tags')) {
                 'tag_type' => 'meta',
                 'tag_key' => 'admin_login_meta_description',
                 'tag_value' => 'Secure admin login portal for Mastercraft Auto management system. Authorized personnel only.'
+            ],
+            // Optional Footer Disclaimers (these are just examples for tag management)
+            [
+                'page' => 'home_index',
+                'tag_type' => 'disclaimer',
+                'tag_key' => 'home_section7_footer_disclaimer_h3',
+                'tag_value' => 'Results may vary based on car condition, age and usage. Contact us for a personalized assessment.'
             ]
         ];
 
@@ -185,6 +192,12 @@ if (!function_exists('setup_default_seo_tags')) {
         }
         
         return "Default SEO tags have been set up successfully!";
+    }
+}
+
+if (!function_exists('setup_footer_disclaimer_tag')) {
+    function setup_footer_disclaimer_tag() {
+        return "Footer disclaimer is now hardcoded by default. Use the admin tag management system to customize disclaimer text for specific pages using the key 'footer_disclaimer' or 'home_section7_footer_disclaimer_h3'.";
     }
 }
 

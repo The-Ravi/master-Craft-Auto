@@ -143,17 +143,12 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-file-alt"></i>
-                        <p>
-                            Tag Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                        <i class="nav-icon fas fa-file-alt"></i><p>Tag Management<i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?php echo base_url(); ?>admin/tags" class="nav-link">
-                                <i class="nav-icon fas fa-arrow-circle-right"></i>
-                                <p>Tag List</p>
+                                <i class="nav-icon fas fa-arrow-circle-right"></i><p>Tag List</p>
                             </a>
                         </li>
         <!--

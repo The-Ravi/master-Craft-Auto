@@ -219,7 +219,7 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
 </div>
 </section>
       <!-- Footer start -->
-      <?php $this->load->view('themes/frontend/common/footer'); ?>
+      <?php $this->load->view('themes/frontend/common/footer', isset($tags) ? array('tags' => $tags) : array()); ?>
       <!-- Footer end -->
 
 <script>

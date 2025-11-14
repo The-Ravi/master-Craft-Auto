@@ -6,22 +6,38 @@
 	class Servicecontroller extends MX_Controller
 	{
 		
-		function __construct()
-		{
-			parent::__construct();
+			function __construct()
+	{
+		parent::__construct();
+		
+		try {
 			$this->load->model('Service_model');
-			$this->load->model('tags/Tag_mod'); 
+			
+			// Try to load the Tag_mod model with multiple approaches
+			if (!$this->_load_tag_model()) {
+				throw new Exception('Unable to load Tag_mod model');
+			}
+			
 			if (!is_logged()) {
 				redirect('admin','location',301);
 			}
+		} catch (Exception $e) {
+			log_message('error', 'Service controller constructor error: ' . $e->getMessage());
+			show_error('Service controller initialization failed: ' . $e->getMessage(), 500);
 		}
+	}
 
-		public function index($value='')
-		{
+			public function index($value='')
+	{
+		try {
 			$data['rows'] = $this->Service_model->getCategory();
 			$data['tags'] = $this->Tag_mod->getTagsByPage('services');
 			$this->load->view('index', $data);
+		} catch (Exception $e) {
+			log_message('error', 'Service index error: ' . $e->getMessage());
+			show_error('Service page loading failed: ' . $e->getMessage(), 500);
 		}
+	}
 
 		public function getAllService($value='')
 		{
@@ -333,7 +349,47 @@
 			    'status' => Http::BAD_REQUEST,
 			    'message' => $e
 			    ]));
-		    }
-		}
+		    		}
 	}
+	
+	/**
+	 * Helper method to load Tag_mod model with multiple fallback approaches
+	 */
+	private function _load_tag_model()
+	{
+		// Approach 1: Try HMVC module loading
+		try {
+			$this->load->model('tags/tag_mod', 'Tag_mod');
+			if (isset($this->Tag_mod)) {
+				return true;
+			}
+		} catch (Exception $e) {
+			log_message('debug', 'HMVC tag model load failed: ' . $e->getMessage());
+		}
+		
+		// Approach 2: Try direct path loading
+		try {
+			$tag_mod_path = APPPATH . 'modules/tags/models/tag_mod.php';
+			if (file_exists($tag_mod_path)) {
+				require_once($tag_mod_path);
+				$this->Tag_mod = new Tag_mod();
+				return true;
+			}
+		} catch (Exception $e) {
+			log_message('debug', 'Direct tag model load failed: ' . $e->getMessage());
+		}
+		
+		// Approach 3: Try autoload approach
+		try {
+			$this->load->model('Tag_mod');
+			if (isset($this->Tag_mod)) {
+				return true;
+			}
+		} catch (Exception $e) {
+			log_message('debug', 'Autoload tag model failed: ' . $e->getMessage());
+		}
+		
+		return false;
+	}
+}
 ?>

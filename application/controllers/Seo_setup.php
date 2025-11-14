@@ -35,6 +35,19 @@ class Seo_setup extends CI_Controller
     }
 
     /**
+     * Add footer disclaimer tag
+     * URL: /seo_setup/add_disclaimer
+     */
+    public function add_disclaimer() 
+    {
+        $result = setup_footer_disclaimer_tag();
+        
+        echo "<h2>Footer Disclaimer Setup</h2>";
+        echo "<p>" . $result . "</p>";
+        echo "<p><a href='" . base_url() . "'>Go to Home Page</a> to see the disclaimer in the footer.</p>";
+    }
+
+    /**
      * Show summary of current SEO tags
      */
     public function show_summary() 

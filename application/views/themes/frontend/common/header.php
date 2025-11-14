@@ -33,6 +33,135 @@ ul.tabs li {
     color: #fff;
 }
       </style>
+<style>
+/* Consistent spacing and sizing for all screens */
+nav.navbar.navbar-expand-lg ul.navbar-nav {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: clamp(12px, 2.2vw, 28px) !important; /* responsive spacing */
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+nav.navbar.navbar-expand-lg ul.navbar-nav > li {
+  margin: 0 !important;
+  width: auto !important;
+}
+nav.navbar.navbar-expand-lg ul.navbar-nav > li > a.nav-link{
+  font-size: clamp(14px, 1.2vw, 16px) !important;
+  padding: 0 .25rem !important;
+  line-height: 1.2 !important;
+  letter-spacing: .2px !important;
+  white-space: nowrap !important;
+}
+
+/* Extra safety on large desktops */
+@media (min-width: 1400px){
+  nav.navbar.navbar-expand-lg ul.navbar-nav{ gap: 28px !important; }
+}
+
+/* Between 992px and 1199px */
+@media (min-width: 992px) and (max-width: 1199.98px){
+  nav.navbar.navbar-expand-lg ul.navbar-nav{ gap: 18px !important; }
+  nav.navbar.navbar-expand-lg ul.navbar-nav > li > a.nav-link{ font-size: 15px !important; }
+}
+
+/* Under 992px navbar collapses (Bootstrap). Ensure offcanvas/expanded menu spacing looks tidy */
+@media (max-width: 991.98px){
+  #navbarSupportedContent .navbar-nav > li{ margin-bottom: 6px; }
+  #navbarSupportedContent .navbar-nav > li > a.nav-link{ white-space: nowrap; }
+}
+
+/* Mobile header layout and z-index fixes */
+@media (max-width: 768px) {
+  /* Header container */
+  .header {
+    position: relative !important;
+    z-index: 2000 !important;
+    background: rgba(0,0,0,0.1) !important;
+    padding: 10px 0 !important;
+  }
+  
+  /* Navbar positioning */
+  .navbar {
+    position: relative !important;
+    z-index: 2001 !important;
+    padding: 8px 0 !important;
+  }
+  
+  /* Logo positioning and visibility */
+  .navbar-brand {
+    display: block !important;
+    visibility: visible !important;
+    z-index: 2002 !important;
+    position: relative !important;
+    margin-right: auto !important;
+  }
+  .navbar-brand img {
+    display: block !important;
+    visibility: visible !important;
+    width: 80px !important;
+    height: auto !important;
+    max-width: none !important;
+    z-index: 2003 !important;
+    position: relative !important;
+  }
+  
+  /* Hamburger menu positioning */
+  .navbar-toggler {
+    z-index: 2004 !important;
+    position: relative !important;
+    margin-left: auto !important;
+    padding: 4px 8px !important;
+    border: none !important;
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 4px !important;
+  }
+  
+  /* Container spacing */
+  .container-fluid {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  
+  /* Ensure header stays at top without fixed positioning issues */
+  .navbar {
+    position: relative !important;
+    background: rgba(34, 62, 127, 0.95) !important;
+  }
+  
+  /* Prevent any disclaimer text from appearing in header area */
+  .header .disclaimer-mobile,
+  .navbar .disclaimer-mobile,
+  nav .disclaimer-mobile {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  
+  /* Only show disclaimer in footer section */
+  .section.eightss .disclaimer-mobile {
+    display: block !important;
+    visibility: visible !important;
+  }
+  
+  /* Ensure header elements stay on top */
+  .header, .navbar, .navbar-brand, .navbar-toggler {
+    position: relative !important;
+    z-index: 9999 !important;
+  }
+  
+  /* Clear header area from any floating content */
+  .header::before {
+    content: '' !important;
+    display: block !important;
+    clear: both !important;
+  }
+}
+</style>
 <div class="booknow">
 
          <a href="<?= base_url() ?>" data-bs-toggle="modal" data-bs-target="#cta">
@@ -84,7 +213,7 @@ ul.tabs li {
 
                   <li data-menuanchor="secondPage" class=" nav-item ">
 
-                     <a class="nav-link" href="<?php echo base_url(); ?>#secondPage">Home</a>
+                     <a class="nav-link" href="<?php echo base_url(); ?>#firstPage">Home</a>
 
                   </li>
 
@@ -118,8 +247,8 @@ ul.tabs li {
                     <li class="nav-item"><a class="nav-link"  href="<?php echo base_url(); ?>gallery">Gallery </a></li>
 
                    </li>
-                    <li class="nav-item"><a class="nav-link"  href="<?php echo base_url(); ?>centers">Locations </a></li>
 
+                  <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>blogs">Blogs</a></li>
 
                   <li data-menuanchor="seven" class="nav-item">
 

@@ -605,7 +605,7 @@ future needs. Thank you once again for the excellent work
     </section>
 
       <!-- Footer section start -->
-     <?php $this->load->view('themes/frontend/common/footer'); ?>
+     <?php $this->load->view('themes/frontend/common/footer', isset($tags) ? array('tags' => $tags) : array()); ?>
       <!-- Footer section end -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
      <script>

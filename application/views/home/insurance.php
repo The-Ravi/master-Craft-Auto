@@ -293,4 +293,4 @@ service from the moment your car rolls in.'); ?>
     </div>
 </div>
 
-<?php $this->load->view('themes/frontend/common/footer'); ?>
+<?php $this->load->view('themes/frontend/common/footer', isset($tags) ? array('tags' => $tags) : array()); ?>

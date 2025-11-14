@@ -321,7 +321,7 @@
         </div> <!-- modal-dialog -->
       </div> <!-- modal fade -->
 
-      <?php $this->load->view('themes/frontend/common/footer'); ?>
+      <?php $this->load->view('themes/frontend/common/footer', isset($tags) ? array('tags' => $tags) : array()); ?>
       <script>
          $(' .owl_1').owlCarousel({
              loop: false,

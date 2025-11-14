@@ -5,6 +5,27 @@
             <div class="container">
 
                <footer class="d-flex justify-content-between flex-column">
+                  
+                  <!-- Professional Disclaimer at top of footer -->
+                  <div class="disclaimer-mobile" style="text-align: center; padding: 15px 10px; margin-bottom: 25px; display: block !important; visibility: visible !important;">
+                     <span style="color: #ff0000; font-weight: 600; margin-right: 8px; font-size: 1rem;">Disclaimer:</span>
+                     <span style="color: #ffffff; font-size: 0.95rem; font-weight: 400; text-shadow: 0 1px 2px rgba(0,0,0,0.3); line-height: 1.4;">
+                     Results vary based on vehicle condition, age, and usage. Service time is an estimate and may change.
+                     </span>
+                  </div>
+                  
+                  <!-- Mobile responsive styling -->
+                  <style>
+                  @media (max-width: 768px) {
+                     .disclaimer-mobile {
+                        padding: 20px 15px !important;
+                        margin-top: 40px !important;
+                        margin-bottom: 40px !important;
+                        font-size: 0.9rem !important;
+                        line-height: 1.6 !important;
+                     }
+                  }
+                  </style>
 
                   <div class="row">
 

@@ -71,6 +71,7 @@ class Tagcontroller extends MX_Controller
         }
     }
 
+
     /** Form to add a new tag */
     public function create()
     {
