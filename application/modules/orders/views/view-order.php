@@ -46,6 +46,14 @@
                                         <td><?php echo $order->petrol_type ?> </td>
                                      </tr>
                                      <tr>
+                                        <td>Customer Name </td>
+                                        <td><?php echo isset($order->full_name) ? $order->full_name : 'N/A' ?> </td>
+                                     </tr>
+                                     <tr>
+                                        <td>Message </td>
+                                        <td><?php echo isset($order->message) ? $order->message : 'N/A' ?> </td>
+                                     </tr>
+                                     <tr>
                                         <td>Service Name </td>
                                         <td><?php  $Servicelists = $order->Servicelist;
                                          $titles = $Servicelists['title'];

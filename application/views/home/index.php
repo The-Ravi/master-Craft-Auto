@@ -79,12 +79,186 @@ nav.navbar ul.navbar-nav li.nav-item:first-child {
 
   </style>
      <style>
+          /* Disclaimer at top of footer */
+          footer {
+              padding-top: 10px;
+              position: relative;
+          }
+          
+          footer .navbar-brand {
+              position: relative !important;
+              top: auto !important;
+              left: auto !important;
+              transform: none !important;
+              z-index: 1 !important;
+              margin-top: -20px !important;
+          }
+          
+          .disclaimer-top {
+              width: 100%;
+              margin-bottom: 30px;
+              margin-top: 0;
+              padding-top: 0;
+              text-align: left;
+              position: relative;
+              z-index: 10;
+          }
+          
+          .disclaimer-footer {
+              font-size: 0.9rem;
+              line-height: 1.5;
+              margin-bottom: 0;
+              margin-top: 0;
+              position: relative;
+              z-index: 10;
+          }
+          
+          .disclaimer-footer span:first-child {
+              margin-right: 5px;
+          }
+          
           @media (max-width:767px){
+              .disclaimer-top {
+                  margin-bottom: 20px;
+                  margin-top: 0;
+              }
               
-             li.nav-item.mb-2.bricj {
-    display: flex;
-    justify-content: center;
-} 
+              .disclaimer-footer {
+                  font-size: 0.8rem;
+              }
+              
+              footer .navbar-brand {
+                  margin-top: 0 !important;
+              }
+              
+              li.nav-item.mb-2.bricj {
+                  display: flex;
+                  justify-content: center;
+              } 
+          }
+          
+          /* Modal Styling */
+          #cta .modal-dialog {
+              max-width: 600px;
+          }
+          
+          #cta .modal-content {
+              border-radius: 12px;
+              border: none;
+              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+          }
+          
+          #cta .modal-header {
+              border-bottom: none;
+              padding: 10px 15px 0;
+          }
+          
+          #cta .modal-body {
+              padding: 0;
+          }
+          
+          #cta .modal-body .intro.contact {
+              padding: 0;
+              margin: 0;
+          }
+          
+          #cta .modal-body .container {
+              max-width: 100%;
+              padding: 0;
+          }
+          
+          #cta .card {
+              border: none;
+              box-shadow: none;
+              border-radius: 0;
+          }
+          
+          #cta .card-body {
+              padding: 20px 30px;
+          }
+          
+          #cta .card-body h3 {
+              font-size: 24px;
+              font-weight: 600;
+              color: #223E7F;
+              margin-bottom: 15px;
+              text-align: center;
+          }
+          
+          #cta .card-body label {
+              font-size: 11px;
+              font-weight: 600;
+              color: #223E7F;
+              margin-bottom: 5px;
+              margin-top: 10px;
+          }
+          
+          #cta .card-body .form-control,
+          #cta .card-body .form-select {
+              border: 1px solid #ddd;
+              border-radius: 6px;
+              padding: 8px 12px;
+              font-size: 13px;
+          }
+          
+          #cta .card-body .form-control:focus,
+          #cta .card-body .form-select:focus {
+              border-color: #dc3545;
+              box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.1);
+          }
+          
+          #cta .card-body textarea.form-control {
+              min-height: 60px;
+          }
+          
+          #cta .card-body button[type="submit"] {
+              width: 100%;
+              margin-top: 15px;
+              margin-bottom: 10px;
+              background: #dc3545;
+              border: none;
+              padding: 10px;
+              font-size: 15px;
+              font-weight: 600;
+              border-radius: 6px;
+              transition: all 0.3s ease;
+          }
+          
+          #cta .card-body button[type="submit"]:hover {
+              background: #c82333;
+              transform: translateY(-2px);
+              box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+          }
+          
+          #cta .btn-close {
+              background-size: 16px;
+              opacity: 0.5;
+              padding: 0.5rem;
+          }
+          
+          #cta .btn-close:hover {
+              opacity: 1;
+          }
+          
+          @media (max-width: 767px) {
+              #cta .modal-dialog {
+                  max-width: 90%;
+                  margin: 1rem auto;
+              }
+              
+              #cta .card-body {
+                  padding: 15px 20px;
+              }
+              
+              #cta .card-body h3 {
+                  font-size: 20px;
+                  margin-bottom: 12px;
+              }
+              
+              #cta .card-body label {
+                  font-size: 10px;
+                  margin-top: 8px;
+              }
           }
           
       </style>
@@ -752,20 +926,11 @@ nav.navbar ul.navbar-nav li.nav-item:first-child {
                     <label for="services">SELECT YOUR CAR SERVICE</label>
                     <select name="service" id="service" class="form-control form-select service" required>
                         <option value=""></option>
-                        <option value="Dent Beating and Painting">Dent Beating and Painting</option>
-                        <option value="Velocity Repai">Velocity Repair</option>
-                        <option value="Car Care Service">Car Care Service</option>
-                        <option value="Car Washing - Quick Wash">&nbsp;&nbsp;&nbsp;&nbsp;Car Washing - Quick Wash</option>
-                        <option value="Car Washing - Deep Cleaning">&nbsp;&nbsp;&nbsp;&nbsp;Car Washing - Deep Cleaning</option>
-                        <option value="Ceramic Coating">&nbsp;&nbsp;&nbsp;&nbsp;Ceramic Coating</option>
-                        <option value="Detailing - Interior and Exterior">&nbsp;&nbsp;&nbsp;&nbsp;Detailing - Interior and Exterior</option>
-                        <option value="Paint Protection Film (PPF)">&nbsp;&nbsp;&nbsp;&nbsp;Paint Protection Film (PPF)</option>
-                        <option value="Car Wax">&nbsp;&nbsp;&nbsp;&nbsp;Car Wax</option>
-                        <option value="Anti Rust Coating">&nbsp;&nbsp;&nbsp;&nbsp;Anti Rust Coating</option>
-                        <option value="Car Repair Service">Car Repair Service</option>
-                        <option value="Wheel Care">Wheel Care</option>
-                        <option value="Engine Care">Engine Care</option>
-                        <option value="Headlamp Restoration">Headlamp Restoration</option>
+                        <?php if(isset($service_category) && !empty($service_category)): ?>
+                            <?php foreach($service_category as $category): ?>
+                                <option value="<?php echo htmlspecialchars($category->cate_name); ?>"><?php echo htmlspecialchars($category->cate_name); ?></option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </select>
                   </div>
                 </div>
@@ -838,31 +1003,15 @@ nav.navbar ul.navbar-nav li.nav-item:first-child {
   <div class="intro fooetrs">
     <div class="container">
       <footer class="d-flex justify-content-between flex-column">
-        <!-- Professional Disclaimer at top of footer -->
-        <div class="disclaimer-mobile" style="text-align: center; padding: 15px 10px; margin-bottom: 25px; display: block !important; visibility: visible !important;">
-          <span style="color: #ff0000; font-weight: 600; margin-right: 8px; font-size: 1rem;">Disclaimer:</span>
-          <span style="color: #ffffff; font-size: 0.95rem; font-weight: 400; text-shadow: 0 1px 2px rgba(0,0,0,0.3); line-height: 1.4;">
-          Results vary based on vehicle condition, age, and usage. Service time is an estimate and may change.
-          </span>
+        
+        <!-- Disclaimer at Top -->
+        <div class="disclaimer-top">
+          <p class="disclaimer-footer">
+            <span style="color: #dc3545; font-weight: 600;">Disclaimer:</span>
+            <span style="color: #e8e8e8;">Results vary based on vehicle condition, age, and usage. Service time is an estimate and may change.</span>
+          </p>
         </div>
-        
-        <!-- Mobile responsive styling for home page -->
-        <style>
-        @media (max-width: 768px) {
-           .disclaimer-mobile {
-              padding: 20px 15px !important;
-              margin-top: 40px !important;
-              margin-bottom: 40px !important;
-              font-size: 0.9rem !important;
-              line-height: 1.6 !important;
-           }
-           /* Ensure logo doesn't overlap with disclaimer */
-           .col-6 .navbar-brand {
-              margin-bottom: 20px !important;
-           }
-        }
-        </style>
-        
+
         <div class="row" data-aos="fade-down">
           <div class="col-6">
             <a class="navbar-brand" href="#">
@@ -1019,12 +1168,12 @@ nav.navbar ul.navbar-nav li.nav-item:first-child {
 
 <!-- Modal -->
 <div class="modal fade" id="cta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body modal-dialog-centered">
+      <div class="modal-body">
         <div class="intro contact">
           <div class="container">
             <div class="row">
@@ -1032,7 +1181,7 @@ nav.navbar ul.navbar-nav li.nav-item:first-child {
                 <div class="card">
                   <div class="card-body">
                     <h3>
-                      <?php echo get_tag('modal', 'h3', 'modal_letsconnect_h3'); ?>
+                      <?php echo get_tag($tags, 'modal_letsconnect_h3', 'Let\'s Connect'); ?>
                     </h3>
                     <form id="contact_formPop" name="contact_form" method="post">
                       <div class="row">
@@ -1055,20 +1204,11 @@ nav.navbar ul.navbar-nav li.nav-item:first-child {
                           <label for="services">SELECT YOUR CAR SERVICE</label>
                           <select name="service" id="service" class="form-control form-select service" required>
                             <option value=""></option>
-                            <option value="Dent Beating and Painting">Dent Beating and Painting</option>
-                            <option value="Velocity Repai">Velocity Repair</option>
-                            <option value="Car Care Service">Car Care Service</option>
-                            <option value="Car Washing - Quick Wash">&nbsp;&nbsp;&nbsp;&nbsp;Car Washing - Quick Wash</option>
-                            <option value="Car Washing - Deep Cleaning">&nbsp;&nbsp;&nbsp;&nbsp;Car Washing - Deep Cleaning</option>
-                            <option value="Ceramic Coating">&nbsp;&nbsp;&nbsp;&nbsp;Ceramic Coating</option>
-                            <option value="Detailing - Interior and Exterior">&nbsp;&nbsp;&nbsp;&nbsp;Detailing - Interior and Exterior</option>
-                            <option value="Paint Protection Film (PPF)">&nbsp;&nbsp;&nbsp;&nbsp;Paint Protection Film (PPF)</option>
-                            <option value="Car Wax">&nbsp;&nbsp;&nbsp;&nbsp;Car Wax</option>
-                            <option value="Anti Rust Coating">&nbsp;&nbsp;&nbsp;&nbsp;Anti Rust Coating</option>
-                            <option value="Car Repair Service">Car Repair Service</option>
-                            <option value="Wheel Care">Wheel Care</option>
-                            <option value="Engine Care">Engine Care</option>
-                            <option value="Headlamp Restoration">Headlamp Restoration</option>
+                            <?php if(isset($service_category) && !empty($service_category)): ?>
+                                <?php foreach($service_category as $category): ?>
+                                    <option value="<?php echo htmlspecialchars($category->cate_name); ?>"><?php echo htmlspecialchars($category->cate_name); ?></option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                           </select>
                         </div>
                       </div>
@@ -1087,16 +1227,16 @@ nav.navbar ul.navbar-nav li.nav-item:first-child {
                         </div>
                       </div>
                       <button type="submit" class="btn btn-primary px-4 btn-lg" id="contatSubmit">
-                        <?php echo get_tag('modal', 'h4', 'modal_cta_submit_h4'); ?>
+                        <?php echo get_tag($tags, 'modal_cta_submit_h4', 'Submit'); ?>
                       </button>
                     </form>
                     <form action="#" method="post" id="createbookingOtpPopup" style="display: none;">
                       <br>
                       <h3 class="heading-small" style="font-size: 18px;">
-                        <?php echo get_tag('modal', 'h3', 'modal_otp_heading_h3'); ?>
+                        Verify OTP
                       </h3>
                       <p>
-                        <?php echo get_tag('modal', 'h4', 'modal_otp_text_h4'); ?>
+                        <?php echo get_tag($tags, 'modal_otp_text_h4', 'Please enter the OTP sent to'); ?>
                         +91-<span class="entered_phone_no">9205114537</span> <br>
                       </p>
                       <div class="form-group mb-3">
@@ -1112,18 +1252,18 @@ nav.navbar ul.navbar-nav li.nav-item:first-child {
                       </div>
                       <div class="resend-otp1" style="display: flex;gap:10px;">
                         <span class="resend-otp-text">
-                          <?php echo get_tag('modal', 'h5', 'modal_otp_resend_text_h5'); ?>
+                          Didn't receive OTP?
                         </span>
                         <span class="resend-otp-link" style="display: none;">
                           <a class="use-ajax" href="javascript:void(0)" id="resend-otp" data-once="ajax" onclick="resendOTPPopup();">
-                            <?php echo get_tag('modal', 'h5', 'modal_otp_resend_link_h5'); ?>
+                            Resend OTP
                           </a>
                         </span>:
                         <div id="timer" class="timer">0:59</div>
                       </div>
                       <div class="form-group text-center formsubbtn">
                         <button type="submit" class="btn btn-primary px-4 btn-lg">
-                          <?php echo get_tag('modal', 'h5', 'modal_otp_submit_btn_h5'); ?>
+                          Verify
                         </button> 
                       </div>
                     </form>
@@ -1508,6 +1648,7 @@ function animateToTop(e) {
             $('#createbookingOtp').find('.resend-otp-text').hide();
             $('#createbookingOtp').find('.resend-otp-link').show();
             $('#createbookingOtp').find('.timer').html("0:00");
+            clearInterval(x);
             return false;
           }
         }, 1000);
@@ -1529,16 +1670,19 @@ function animateToTop(e) {
             $('#createbookingOtpPopup').find('.resend-otp-text').hide();
             $('#createbookingOtpPopup').find('.resend-otp-link').show();
             $('#createbookingOtpPopup').find('.timer').html("0:00");
+            clearInterval(x);
             return false;
           }
         }, 1000);
     }
 
+    // OTP VERIFICATION ENABLED
     $("#createbookingOtp").on('submit', (e)=>{
        e.preventDefault();
        VerifyOtp();
     });
     
+  // SEND OTP - OTP FLOW ENABLED
   $("#contact_form").submit(function(e){
       e.preventDefault();
       const brand_id = $("#contact_form").find('.brand_id').val();
@@ -1548,8 +1692,13 @@ function animateToTop(e) {
       const phone_number = $("#contact_form").find('.phone_number').val();
       const message = $("#contact_form").find('.message').val();
     
+      if (!phone_number || phone_number.length !== 10) {
+        $.notify('Please enter a valid 10-digit phone number', 'error');
+        return false;
+      }
+    
         $('#contatSubmit').prop('disabled', true);
-        $('#contatSubmit').html('Submitted...');
+        $('#contatSubmit').html('Sending OTP...');
       
       $.ajax({
           url:'<?php echo base_url(); ?>Home_public/sendOtp',
@@ -1566,7 +1715,7 @@ function animateToTop(e) {
           dataType: 'JSON',
           success:function(res){
               if(res.status == 200){
-                $.notify(res.message,'success');
+                $.notify('OTP sent successfully','success');
                 $("#contact_form").hide();
                 $("#createbookingOtp").find('.entered_phone_no').html(phone_number);
                 $("#createbookingOtp").find('#brand_id').val(brand_id);
@@ -1576,21 +1725,24 @@ function animateToTop(e) {
                 $("#createbookingOtp").find('#message').val(message);
                 $("#createbookingOtp").find('#service').val(service);
                 $('#createbookingOtp').show();
-                $("#contact_formPop").find('#contatSubmit').prop('disabled', false);
-                $("#contact_formPop").find('#contatSubmit').html('Book Your Mastercraft Session');
+                $("#contact_form").find('#contatSubmit').prop('disabled', false);
+                $("#contact_form").find('#contatSubmit').html('Experience The Best Car Services');
                 userTimerstart(1);
               }else{
-                console.log(res.message);
+                $.notify(res.message || 'Failed to send OTP', 'error');
                 $('#contatSubmit').prop('disabled', false);
-                $('#contatSubmit').html('Book Your Mastercraft Session');
+                $('#contatSubmit').html('Experience The Best Car Services');
               }
+          },
+          error: function(error) {
+            $.notify('Error sending OTP', 'error');
+            $('#contatSubmit').prop('disabled', false);
+            $('#contatSubmit').html('Experience The Best Car Services');
           }
-      
       });
-      
-      
   });
 
+  // RESEND OTP FUNCTION ENABLED
   function resendOTP() {
     try{
 
@@ -1606,16 +1758,18 @@ function animateToTop(e) {
             success:function(res){
                 if(res.status == 200){
                  $("#createbookingOtp").find('.entered_phone_no').html(phone_number);
-                  $.notify(res.message,'success');
+                  $.notify('OTP resent successfully','success');
+                  $('#createbookingOtp').find('.resend-otp-text').show();
+                  $('#createbookingOtp').find('.resend-otp-link').hide();
                   userTimerstart(1);
                 }else{
-                  $.notify(res.message);
+                  $.notify(res.message || 'Failed to resend OTP', 'error');
                   console.log(res.message);
                 }
             },
             error: function (error){
-              console.log(error.responseJSON.message);
-              $.notify(error.responseJSON.message);
+              console.log(error);
+              $.notify('Error resending OTP', 'error');
             }
         
         });
@@ -1625,6 +1779,7 @@ function animateToTop(e) {
     }
   }
 
+  // OTP VERIFICATION FUNCTION ENABLED
   const VerifyOtp = async() => {
     try {
       $('.error_class').remove();
@@ -1636,10 +1791,13 @@ function animateToTop(e) {
         const service = $("#createbookingOtp").find('#service').val();
         const otp =$('#createbookingOtp').find('#otp').val();
         if (!otp) {
-          $('#createbookingOtp').find('#otp').after('<div class="error_class">OTP is required</div>');
+          $('#createbookingOtp').find('#otp').after('<div class="error_class" style="color:red;">OTP is required</div>');
           $('#createbookingOtp').find('#otp').focus();
           return false;
         }
+        
+        $('#createbookingOtp').find('button[type="submit"]').prop('disabled', true);
+        $('#createbookingOtp').find('button[type="submit"]').html('Verifying...');
         
         let data = {
                 'brand_id':brand_id,
@@ -1651,10 +1809,6 @@ function animateToTop(e) {
                 'otp' : otp,
                 'contact_form_submit':'contact_form_submit'
             };
-         
-      
-          $("#contact_formPop").find('#contatSubmit').prop('disabled', true);
-          $("#contact_formPop").find('#contatSubmit').html('Submitted...');
         
         $.ajax({
             url:'<?php echo base_url(); ?>Home_public/saveContactForm',
@@ -1663,27 +1817,33 @@ function animateToTop(e) {
             dataType: 'JSON',
             success:function(res){
                 if(res.status == 200){
-                  $('#cta').modal('hide');
-                  $.notify(res.message,'success');
+                  $.notify('OTP verified successfully!','success');
                   location.href= '<?= base_url() ?>thankyou';
                 }else{
-                  $.notify(res.message);
+                  $.notify(res.message || 'Invalid OTP. Please try again.', 'error');
+                  $('#createbookingOtp').find('button[type="submit"]').prop('disabled', false);
+                  $('#createbookingOtp').find('button[type="submit"]').html('Verify & Submit');
                   console.log(res.message);
                 }
             },
             error: function (error){
-              console.log(error.responseJSON.message);
-              $.notify(error.responseJSON.message);
+              console.log(error);
+              $.notify('Error verifying OTP', 'error');
+              $('#createbookingOtp').find('button[type="submit"]').prop('disabled', false);
+              $('#createbookingOtp').find('button[type="submit"]').html('Verify & Submit');
             }
         
         });
     } catch(error){
       console.log(error);
+      $.notify('Error verifying OTP', 'error');
+      $('#createbookingOtp').find('button[type="submit"]').prop('disabled', false);
+      $('#createbookingOtp').find('button[type="submit"]').html('Verify & Submit');
     }
   }
 
 // Popup Form.............
-  
+  // SEND OTP FLOW FOR MODAL
   $("#contact_formPop").submit(function(e){
       e.preventDefault();
       const brand_id = $("#contact_formPop").find('.brand_id').val();
@@ -1692,6 +1852,12 @@ function animateToTop(e) {
       const phone_number = $("#contact_formPop").find('.phone_number').val();
       const message = $("#contact_formPop").find('.message').val();
       const service = $("#contact_formPop").find('.service').val();
+      
+      if (!phone_number || phone_number.length !== 10) {
+        $.notify('Please enter a valid 10-digit phone number', 'error');
+        return false;
+      }
+      
         $("#contact_formPop").find('#contatSubmit').prop('disabled', true);
         $("#contact_formPop").find('#contatSubmit').html('Submitted...');
       
@@ -1726,15 +1892,20 @@ function animateToTop(e) {
                 
               }else{
                 console.log(res.message);
+                $("#contact_formPop").find('#contatSubmit').prop('disabled', false);
+                $("#contact_formPop").find('#contatSubmit').html('Book Your Mastercraft Session');
               }
+          },
+          error: function(error) {
+            $.notify('Error sending OTP', 'error');
+            $("#contact_formPop").find('#contatSubmit').prop('disabled', false);
+            $("#contact_formPop").find('#contatSubmit').html('Book Your Mastercraft Session');
           }
-      
       });
-      
-      
   });
 
-  $('#createbookingOtpPopup').on('submit', (e)=>{
+  // OTP POPUP VERIFICATION COMMENTED OUT - DIRECT SUBMISSION ENABLED
+  /* $('#createbookingOtpPopup').on('submit', (e)=>{
     e.preventDefault();
     $('.error_class').remove();
       const brand_id = $("#createbookingOtpPopup").find('#brand_id').val();
@@ -1783,7 +1954,7 @@ function animateToTop(e) {
           }
       
       });
-  });
+  }); */
 
   
   
@@ -1816,7 +1987,8 @@ function animateToTop(e) {
     
   }
 
-  function resendOTPPopup() {
+  // RESEND OTP POPUP FUNCTION COMMENTED OUT - DIRECT SUBMISSION ENABLED
+  /* function resendOTPPopup() {
     try{
       const phone_number = $("#createbookingOtpPopup").find('#mobile').val();
       $.ajax({
@@ -1848,7 +2020,7 @@ function animateToTop(e) {
     }catch(error){
       console.log(error);
     }
-  }
+  } */
   
   const handleChange = async (e) => {
       const id = $(e).val();

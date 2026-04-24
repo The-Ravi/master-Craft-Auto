@@ -23,11 +23,14 @@
     }
 }
 .fp-overflow.aboutus {
-    padding: 150px 0px 70px 0px;
+    padding: 150px 0px 150px 0px;
     height: auto !IMPORTANT;
     clear: both;
     max-height: fit-content;
     background-size: cover !important;
+    min-height: calc(100vh - 80px);
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 .thirdslider .secondslider h2 {
     text-align: left;
@@ -35,12 +38,25 @@
 }.strip {
     text-align: left;
 }
+@media (max-width: 1024px) {
+.fp-overflow.aboutus {
+    padding: 120px 0px 100px 0px;
+    min-height: auto;
+}
+}
 @media (max-width: 700px) {
 .fp-overflow.aboutus {
     background-position: 627px 0px !important;
+    padding: 100px 0px 80px 0px;
 }.fp-overflow.aboutus .row .col-md-6.d-flex.align-items-center.justify-content-center {
     background: #02020273;
-}}
+}
+}
+@media (max-width: 480px) {
+.fp-overflow.aboutus {
+    padding: 80px 0px 60px 0px;
+}
+}
       </style>
        <!-- Meta Pixel Code -->
 <script>

@@ -109,7 +109,7 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
                                  <span>1 Hour</span>
                               </div>
                               <div class="booknowbtn">
-                                 <a href="#" class="btn">
+                                 <a href="javascript:void(0)" class="btn" data-bs-toggle="modal" data-bs-target="#cta" data-category="<?php echo htmlspecialchars($category->cate_name); ?>">
                                     <?php echo get_tag($tags, 'service_book_now_btn', '+ Book Now'); ?>
                                  </a>
                               </div>
@@ -314,19 +314,40 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
      <?php $this->load->view('themes/frontend/common/footer', isset($tags) ? array('tags' => $tags) : array()); ?>
       <!-- Footer section end -->
     
-            <!-- <script>
-window.onscroll = function() {myFunction()};
-
-var header = document.getElementById("myHeader");
-var sticky = header.offsetTop;
-
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("sticky");
-  } else {
-    header.classList.remove("sticky");
-  }
-}
-</script> -->
+<script type="text/javascript">
+// Ensure modal category is set when opened from services page
+$(document).ready(function() {
+  // Additional handler for services page
+  $('#cta').on('show.bs.modal', function (event) {
+    const button = $(event.relatedTarget);
+    let category = button.data('category');
+    
+    // If category is not found, try to get from active tab
+    if (!category) {
+      const activeTab = $('.wrapper .owl_1 .nav-item.active a');
+      if (activeTab.length) {
+        category = activeTab.text().trim();
+      }
+    }
+    
+    // Set category in form
+    if (category) {
+      $('#service_category').val(category);
+      $('#service').val(category);
+    }
+  });
+  
+  // Also handle clicks on Book Now buttons
+  $('.booknowbtn a[data-bs-target="#cta"]').on('click', function() {
+    const category = $(this).data('category');
+    if (category) {
+      setTimeout(function() {
+        $('#service_category').val(category);
+        $('#service').val(category);
+      }, 100);
+    }
+  });
+});
+</script>
    </body>
 </html>

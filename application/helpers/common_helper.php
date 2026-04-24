@@ -57,27 +57,36 @@
 	    }
 	}
 
-	function sendSms($mobile='', $otp='')
-	{
-		$curl = curl_init();
-		  curl_setopt_array($curl, array(
-		  CURLOPT_URL => 'https://sms.sendmsg.in/smpp?username=nippon_tr&password=lJMJqtexZEpP&from=NPISHM&smsmsgid=1201159144480210318&to=91'.$mobile.'&text=Hi%2520Nippon%252C%2520Your%2520OTP%2520is%2520'.$otp.'.%2520Do%2520not%2520share%2520with%2520anyone%2520-%2520NIPPON&urlshortening=1',
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_ENCODING => '',
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 0,
-		  CURLOPT_FOLLOWLOCATION => true,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => 'POST',
-		  CURLOPT_HTTPHEADER => array(
-		    'Content-Type: application/json'
-		  ),
-		));
+function sendSms($mobile='', $otp='')
+{
+    // If cURL is not available (common on local/dev), avoid fatal error and just log
+    if (!function_exists('curl_init')) {
+        log_message('error', 'sendSms: cURL extension not enabled. OTP not actually sent. Mobile: ' . $mobile . ', OTP: ' . $otp);
+        return false;
+    }
 
-		$response = curl_exec($curl);
-		curl_close($curl);
-		return $response;
-	}
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://sms.sendmsg.in/smpp?username=nippon_tr&password=lJMJqtexZEpP&from=NPISHM&smsmsgid=1201159144480210318&to=91'.$mobile.'&text=Hi%2520Nippon%252C%2520Your%2520OTP%2520is%2520'.$otp.'.%2520Do%2520not%2520share%2520with%2520anyone%2520-%2520NIPPON&urlshortening=1',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    if ($response === false) {
+        log_message('error', 'sendSms: cURL error: ' . curl_error($curl));
+    }
+    curl_close($curl);
+    return $response;
+}
 	if (!function_exists('custom_pagination')) {
 		function custom_pagination($total_pages='',$page='',$baseUrl=''){
 			$start = ($page -2);
@@ -147,35 +156,42 @@
 	}
 	
 	function sendMail($subject='', $message=''){
-	    $ci=& get_instance();
-	    
-	    $ci->load->library('email');
-         $config = Array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'noreply_ar@nipponpaint.co.in',
-            'smtp_pass' => 'gweydlmqrzxieeek',
-            'mailtype'  => 'html', 
-            'charset'   => 'iso-8859-1'
-        );
-        
-        $ci->load->initialize($config);
-        $ci->email->set_newline("\r\n");
-        $ci->email->set_header('Content-Type', 'text/html');
-        // Set to, from, message, etc.
-        $ci->email->from('noreply_ar@nipponpaint.co.in', 'Master craft');
-        $ci->email->to('bodyshop.mastercraftggn@nipponpaint.co.in');
-        $ci->email->bcc('madhu.pomelodigital@gmail.com,business.leadindia@gmail.com');
-        $ci->email->subject($subject);
-        $ci->email->message($message);
-        $result = $ci->email->send();
-        
-        if($result){
-           return true;
-        } else {
-             print_r($this->email->print_debugger());
-            die();
+	    try {
+	        $ci=& get_instance();
+	        
+	        $ci->load->library('email');
+             $config = Array(
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'noreply_ar@nipponpaint.co.in',
+                'smtp_pass' => 'gweydlmqrzxieeek',
+                'mailtype'  => 'html', 
+                'charset'   => 'iso-8859-1'
+            );
+            
+            $ci->email->initialize($config);
+            $ci->email->set_newline("\r\n");
+            $ci->email->set_header('Content-Type', 'text/html');
+            // Set to, from, message, etc.
+            $ci->email->from('noreply_ar@nipponpaint.co.in', 'Master craft');
+            $ci->email->to('bodyshop.mastercraftggn@nipponpaint.co.in');
+            $ci->email->bcc('madhu.pomelodigital@gmail.com,business.leadindia@gmail.com');
+            $ci->email->subject($subject);
+            $ci->email->message($message);
+            $result = $ci->email->send();
+            
+            if($result){
+               return true;
+            } else {
+                 // Log error but don't die - allow form submission to continue
+                 log_message('error', 'Email send failed: ' . $ci->email->print_debugger());
+                 return false;
+            }
+        } catch (Exception $e) {
+            // Log error but don't die - allow form submission to continue
+            log_message('error', 'Email send exception: ' . $e->getMessage());
+            return false;
         }
 	}
 ?>

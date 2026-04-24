@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Blog Model
@@ -18,6 +19,11 @@ class Blog_model extends CI_Model
      */
     public function get_all_blogs($limit = NULL, $offset = 0)
     {
+        // Check if table exists first
+        if (!$this->db->table_exists($this->table)) {
+            return array();
+        }
+        
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->where('status', 'published');

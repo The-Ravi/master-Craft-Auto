@@ -89,10 +89,12 @@
                                                 <th>S.NO</th>
                                                 <th>Order Id</th>
                                                 <th>Mobile No</th>
+                                                <th>Customer Name</th>
                                                 <th>Brand Name</th>
                                                 <th>Model Name</th>
                                                 <th>Service</th>
                                                 <th>Fuel Type</th>
+                                                <th>Message</th>
                                                 <th>Order Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
@@ -108,10 +110,12 @@
                                                 <td><?php echo $n; ?></td>
                                                 <td><?php echo $value->id;?></td>
                                                 <td><?php echo $value->mobile;?></td>
+                                                <td><?php echo isset($value->full_name) ? $value->full_name : 'N/A'; ?></td>
                                                 <td><?php echo $value->brand_name;?></td>
                                                 <td><?php echo $value->model_name;?></td>
                                                 <td><?php if(isset($value->Servicelist['title'])){echo implode(', ',$value->Servicelist['title']); }?></td>
                                                 <td><?php echo $value->petrol_type;?></td>
+                                                <td><?php echo isset($value->message) ? substr($value->message, 0, 50) . (strlen($value->message) > 50 ? '...' : '') : 'N/A'; ?></td>
                                                 <td><?php echo date('d-M-Y', strtotime($value->created_at));?></td>
                                                 <td><?php if($value->status==1){echo  "Active";}else{echo  "Inctive";} ?></td>
                                                 <td>

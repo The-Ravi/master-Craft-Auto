@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Blog Controller
@@ -21,6 +22,7 @@ class Blogcontroller extends MX_Controller
         $data['page_title'] = 'Our Blog';
         $data['blogs'] = $this->Blog_model->get_all_blogs();
         $data["tags"] = $this->Tag_mod->get_page_tags('blog_index');
+        $data["allBrands"] = $this->db->select("id,name")->from("cr_brands")->get()->result();
         
         $this->load->view("themes/frontend/common/top-head", $data);
         $this->load->view("themes/frontend/common/seo-head", $data);
@@ -47,6 +49,7 @@ class Blogcontroller extends MX_Controller
         $data['page_title'] = $blog->title;
         $data['blog'] = $blog;
         $data["tags"] = $this->Tag_mod->get_page_tags('blog_single');
+        $data["allBrands"] = $this->db->select("id,name")->from("cr_brands")->get()->result();
         
         $this->load->view("themes/frontend/common/top-head", $data);
         $this->load->view("themes/frontend/common/seo-head", $data);

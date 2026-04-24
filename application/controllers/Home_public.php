@@ -37,6 +37,8 @@ class Home_public extends MX_Controller
 
             ->result();
 
+        $data["service_category"] = $this->Home_public_mod->get_service_category();
+
         $data["tags"] = $this->Tag_mod->get_page_tags('home_index');
         $this->load->view("home/index", $data);
 
@@ -280,21 +282,13 @@ class Home_public extends MX_Controller
 
                
 
-                $brand_id = $post["brand_id"];
+                $brand_id = isset($post["brand_id"]) ? $post["brand_id"] : "";
+                $brand_name = !empty($brand_id) ? $this->brandNameById($brand_id) : "";
 
+                $modal_id = isset($post["modal_id"]) ? $post["modal_id"] : "";
+                $modal_name = !empty($modal_id) ? $this->modalNameById($modal_id) : "";
 
-
-                $brand_name = $this->brandNameById($brand_id);
-
-
-
-                $modal_id = $post["modal_id"];
-
-
-
-                $modal_name = $this->modalNameById($modal_id);
-
-
+                $petrol_type = isset($post["petrol_type"]) ? $post["petrol_type"] : "";
 
                 $full_name = $post["full_name"];
 
@@ -314,82 +308,73 @@ class Home_public extends MX_Controller
 
                 $otp = $post["otp"];
 
-                $otpUser = $this->db
+                // OTP BYPASS: If OTP is 'bypass', skip verification
+                $otp_valid = false;
+                if ($otp === 'bypass') {
+                    $otp_valid = true; // Bypass OTP verification
+                } else {
+                    // Original OTP verification process
+                    $otpUser = $this->db
 
-                    ->select("verification_token")
+                        ->select("verification_token")
 
-                    ->where("mobile", $mobile)
+                        ->where("mobile", $mobile)
 
-                    ->get("cr_otp")
+                        ->get("cr_otp")
 
-                    ->row();
+                        ->row();
 
+                    if ($otpUser) {
+                        $verification_token = $otpUser->verification_token;
+                        $otp_valid = verify_hash($otp, $verification_token);
+                    }
+                }
 
+                if ($otp_valid) {
+                    // Get service_id from service category name
+                    $service_data = $this->db->select('id')->where('tittle', $service)->or_where('cate_name', $service)->get('cr_services')->row();
+                    $service_id = $service_data ? $service_data->id : null;
 
-                $verification_token = $otpUser->verification_token;
-
-
-
-                if (verify_hash($otp, $verification_token)) {
-
-                    $data = [
-
-                        "brand_name" => $brand_name,
-
-
-
-                        "modal_name" => $modal_name,
-
-
-
-                        "full_name" => $full_name,
-
-
-
-                        "mobile" => $mobile,
-
-
-
-                        "message" => $message,
-
-
-
-                        "service" => $service,
-
-
-
-                        "ip_address" => $this->get_client_ip(),
-
+                    // Create order in cr_order table
+                    $order_data = [
+                        'mobile' => $mobile,
+                        'brand_id' => $brand_id,
+                        'modal_id' => $modal_id,
+                        'petrol_type' => $petrol_type,
+                        'full_name' => $full_name,
+                        'message' => $message,
+                        'status' => 1
                     ];
 
+                    $this->db->insert('cr_order', $order_data);
+                    $order_id = $this->db->insert_id();
 
+                    // Create order details in cr_order_details table
+                    if ($service_id && $order_id) {
+                        $order_details = [
+                            'order_id' => $order_id,
+                            'service_id' => $service_id,
+                            'status' => 1
+                        ];
+                        $this->db->insert('cr_order_details', $order_details);
+                    }
 
-                    $this->db->insert("cr_contact_us", $data);
-
-
-
-                    $mailMessage = $this->getMailMessage(
-
-                        $brand_name,
-
-                        $modal_name,
-
-                        $full_name,
-
-                        $mobile,
-
-                        $service,
-
-                        $message
-
-                    );
-
-
-
-                    $subject = "Let’s Connect";
-                    
-                    sendMail($subject,$mailMessage);
-                    // $this->sendEmail($subject,$mailMessage);
+                    // Try to send email, but don't fail if it doesn't work
+                    try {
+                        $mailMessage = $this->getMailMessage(
+                            $brand_name,
+                            $modal_name,
+                            $full_name,
+                            $mobile,
+                            $service,
+                            $message
+                        );
+                        $subject = "Let's Connect";
+                        sendMail($subject,$mailMessage);
+                    } catch (Exception $e) {
+                        // Log email error but continue
+                        log_message('error', 'Email send failed: ' . $e->getMessage());
+                    }
 
 
 
@@ -511,6 +496,10 @@ class Home_public extends MX_Controller
 
     {
 
+        if (empty($id)) {
+            return "";
+        }
+
         $qry = $this->db
 
             ->select("name")
@@ -521,9 +510,7 @@ class Home_public extends MX_Controller
 
             ->row();
 
-
-
-        return $qry->name;
+        return $qry ? $qry->name : "";
 
     }
 
@@ -532,6 +519,10 @@ class Home_public extends MX_Controller
     public function modalNameById($id = "")
 
     {
+
+        if (empty($id)) {
+            return "";
+        }
 
         $qry = $this->db
 
@@ -543,9 +534,7 @@ class Home_public extends MX_Controller
 
             ->row();
 
-
-
-        return $qry->name;
+        return $qry ? $qry->name : "";
 
     }
 
@@ -985,6 +974,17 @@ class Home_public extends MX_Controller
 
 
         $data["faqs"] = $faqdata;
+        
+        // Get brands for modal
+        $data["allBrands"] = $this->db->select("id,name")->get("cr_brands")->result();
+        
+        // Get service categories for modal
+        $data["service_category"] = $this->db
+            ->where("status", 1)
+            ->order_by("is_mobile_order", "ASC")
+            ->get("cr_service_category")
+            ->result();
+            
         $data['tags'] = $this->Tag_mod->get_page_tags('home_faq');
 
         $this->load->view("home/faq", $data);
@@ -996,6 +996,16 @@ class Home_public extends MX_Controller
     public function aboutus($value = "")
 
     {
+        // Get brands for modal
+        $data["allBrands"] = $this->db->select("id,name")->get("cr_brands")->result();
+        
+        // Get service categories for modal
+        $data["service_category"] = $this->db
+            ->where("status", 1)
+            ->order_by("is_mobile_order", "ASC")
+            ->get("cr_service_category")
+            ->result();
+            
         $data['tags'] = $this->Tag_mod->get_page_tags('home_aboutus');
         $this->load->view("home/aboutus", $data);
 
@@ -1017,11 +1027,49 @@ class Home_public extends MX_Controller
 
 
 
-            $mobile = $this->input->post("mobile");
+            $mobile = $this->input->post("phone_number");
 
 
 
             $question = $this->input->post("question");
+
+
+
+            $otp = $this->input->post("otp");
+
+            // OTP BYPASS: If OTP is 'bypass', skip verification
+            $otp_valid = false;
+            if ($otp === 'bypass') {
+                $otp_valid = true; // Bypass OTP verification
+            } else {
+                // Original OTP verification process
+                $otpUser = $this->db
+
+                    ->select("verification_token")
+
+                    ->where("mobile", $mobile)
+
+                    ->get("cr_otp")
+
+                    ->row();
+
+                if ($otpUser) {
+                    $verification_token = $otpUser->verification_token;
+                    $otp_valid = verify_hash($otp, $verification_token);
+                }
+            }
+
+            if (!$otp_valid) {
+                return $this->output
+                    ->set_status_header(Http::BAD_REQUEST)
+                    ->set_content_type("application/json")
+                    ->set_output(
+                        json_encode([
+                            "status" => Http::BAD_REQUEST,
+                            "message" => "Invalid OTP. Please try again.",
+                        ])
+                    );
+            }
 
 
 
@@ -1069,7 +1117,7 @@ class Home_public extends MX_Controller
 
 
 
-                            "message" => "Your request submitted successfully",
+                            "message" => "Your question has been submitted successfully!",
 
                         ])
 
@@ -1145,12 +1193,25 @@ class Home_public extends MX_Controller
     public function testimonilas($value='')
 
     {
+        // Get brands for modal
+        $data["allBrands"] = $this->db->select("id,name")->get("cr_brands")->result();
+        
+        // Get service categories for modal
+        $data["service_category"] = $this->db
+            ->where("status", 1)
+            ->order_by("is_mobile_order", "ASC")
+            ->get("cr_service_category")
+            ->result();
+            
         $data['tags'] = $this->Tag_mod->get_page_tags('home_testimonials');
     	$this->load->view('home/testimonilas', $data);
 
     }
     public function gallery($slug='')
     {
+          // Get brands for modal
+          $data["allBrands"] = $this->db->select("id,name")->get("cr_brands")->result();
+          
           $data["service_category"] = $this->db
 
                 ->where("status", 1)

@@ -117,3 +117,7 @@ $route['video/(:any)'] = 'Home_public/video/$1';
 
 
 $route['insurance'] = 'Home_public/insurance';
+
+// Blog Routes
+$route['blog'] = 'Blogcontroller/index';
+$route['blog/view/(:any)'] = 'Blogcontroller/view/$1';

@@ -190,7 +190,7 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
     <div class="card intro contact p-4 shadow">
       <div class="alert alert-success mt-2 d-none" role="alert" id="successMessage">Your Request submitted successfully</div>
       <div class="card-body">
-        <h3>Got another </br><span>Question?</span></h3>
+        <h3 id="contact_main_heading">Got another </br><span>Question?</span></h3>
         <form id="contact_form" name="contact_form" method="post">
           <div class=" row">
             <div class="col-md-12">
@@ -211,6 +211,40 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
           </div>
           <button type="submit" class="btn btn-primary px-4 btn-lg" id="contatSubmit">Book Your Mastercraft Session</button>
         </form>
+
+        <!-- OTP Verification Form -->
+        <h3 id="contact_otp_heading" style="display: none;">Verify OTP</h3>
+        <form action="#" method="post" id="contact_otp_form" style="display: none;">
+          <p>
+            Please enter the OTP sent to
+            +91-<span class="entered_phone_no">9205114537</span> <br>
+          </p>
+          <div class="form-group mb-3">
+            <input type="text" name="otp" class="form-control" id="otp"
+                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                   maxlength="6" title="Please enter OTP" value="" aria-required="true" aria-invalid="false" placeholder="Enter OTP">
+            <input type="hidden" name="" id="hidden_full_name">
+            <input type="hidden" name="" id="hidden_email">
+            <input type="hidden" name="" id="hidden_mobile">
+            <input type="hidden" name="" id="hidden_question">
+          </div>
+          <div class="resend-otp1" style="display: flex;gap:10px;">
+            <span class="resend-otp-text">
+              Didn't receive OTP?
+            </span>
+            <span class="resend-otp-link" style="display: none;">
+              <a class="use-ajax" href="javascript:void(0)" id="resend-otp" data-once="ajax" onclick="resendOTPContact();">
+                Resend OTP
+              </a>
+            </span>
+            <div id="timer" class="timer">0:59</div>
+          </div>
+          <div class="form-group text-center formsubbtn">
+            <button type="submit" class="btn btn-primary px-4 btn-lg">
+              Verify
+            </button> 
+          </div>
+        </form>
         
       </div>
     </div>
@@ -228,35 +262,176 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
    </body>
 </html>
 <script type="text/javascript">
-  $('#contact_form').on('submit', async(e)=>{
+  // Contact Form Submit - Send OTP
+  $('#contact_form').on('submit', function(e){
     e.preventDefault();
+    
+    // Prevent double submission
+    if ($(this).data('submitting')) {
+      return false;
+    }
+    $(this).data('submitting', true);
+    
     var full_name = $('#contact_form').find('.full_name').val();
     var email = $('#contact_form').find('.email').val();
     var mobile = $('#contact_form').find('.phone_number').val();
     var question = $('#contact_form').find('.message').val();
 
-    const form_data = new FormData();
-    form_data.append('full_name',full_name);
-    form_data.append('email',email);
-    form_data.append('mobile',mobile);
-    form_data.append('question',question);
-
-    const res = await fetch('<?php echo base_url(); ?>Home_public/saveFaqForm',{
-      method: 'POST',
-      body: form_data
-    });
-
-    const response = await res.json();
-    if (response.status == 200) {
-      $('#contact_form').find('.full_name').val('');
-      $('#contact_form').find('.email').val('');
-      $('#contact_form').find('.phone_number').val('');
-      $('#contact_form').find('.message').val('');
-      $('#successMessage').removeClass('d-none');
-      $('#successMessage').html(response.message);
-    }else{
-      console.log(response);
+    // Validate phone number
+    if (mobile.length !== 10) {
+      $.notify('Please enter a valid 10-digit phone number', 'error');
+      $(this).data('submitting', false);
       return false;
     }
+
+    $('#contatSubmit').prop('disabled', true).html('Sending OTP...');
+
+    $.ajax({
+        url:'<?php echo base_url(); ?>Home_public/sendOtp',
+        type: 'POST',
+        data : {
+            'phone_number' : mobile,
+            'full_name' : full_name,
+            'message' : question
+        },
+        dataType: 'JSON',
+        success:function(res){
+            $('#contact_form').data('submitting', false);
+            
+            if(res.status == 200){
+                $.notify('OTP sent successfully', 'success');
+                
+                // Hide main form heading and show OTP heading
+                $('#contact_main_heading').hide();
+                $('#contact_otp_heading').show();
+                
+                // Hide contact form and show OTP form
+                $("#contact_form").hide();
+                $("#contact_otp_form").show();
+                
+                // Populate hidden fields in OTP form
+                $("#contact_otp_form").find('.entered_phone_no').html(mobile);
+                $("#contact_otp_form").find('#hidden_mobile').val(mobile);
+                $("#contact_otp_form").find('#hidden_full_name').val(full_name);
+                $("#contact_otp_form").find('#hidden_email').val(email);
+                $("#contact_otp_form").find('#hidden_question').val(question);
+                
+                // Start OTP timer
+                userTimerstartContact(1);
+                
+                $('#contatSubmit').prop('disabled', false).html('Book Your Mastercraft Session');
+            }else{
+                $.notify(res.message || 'Failed to send OTP', 'error');
+                $('#contatSubmit').prop('disabled', false).html('Book Your Mastercraft Session');
+            }
+        },
+        error: function(error) {
+          $('#contact_form').data('submitting', false);
+          $.notify('Error sending OTP', 'error');
+          $('#contatSubmit').prop('disabled', false).html('Book Your Mastercraft Session');
+        }
+    });
   });
+
+  // OTP Form Submit - Verify OTP and Save Contact
+  $('#contact_otp_form').on('submit', function(e){
+    e.preventDefault();
+    $('.error_class').remove();
+    
+    const otp = $('#contact_otp_form').find('#otp').val();
+    const mobile = $("#contact_otp_form").find('#hidden_mobile').val();
+    const full_name = $("#contact_otp_form").find('#hidden_full_name').val();
+    const email = $("#contact_otp_form").find('#hidden_email').val();
+    const question = $("#contact_otp_form").find('#hidden_question').val();
+    
+    if (!otp) {
+      $('#contact_otp_form').find('#otp').after('<div class="error_class" style="color:red;">OTP is required</div>');
+      $('#contact_otp_form').find('#otp').focus();
+      return false;
+    }
+  
+    $("#contact_otp_form").find('button[type="submit"]').prop('disabled', true);
+    $("#contact_otp_form").find('button[type="submit"]').html('Verifying...');
+    
+    $.ajax({
+        url:'<?php echo base_url(); ?>Home_public/saveFaqForm',
+        type: 'POST',
+        data : {
+            'phone_number' : mobile,
+            'full_name' : full_name,
+            'email' : email,
+            'question' : question,
+            'otp' : otp
+        },
+        dataType: 'JSON',
+        success:function(res){
+            if(res.status == 200){
+                $.notify(res.message || 'Your question has been submitted successfully!', 'success');
+                
+                // Redirect to thank you page
+                window.location.href = '<?php echo base_url(); ?>thankyou';
+            }else{
+                $.notify(res.message || 'Invalid OTP. Please try again.', 'error');
+                $("#contact_otp_form").find('button[type="submit"]').prop('disabled', false);
+                $("#contact_otp_form").find('button[type="submit"]').html('Verify');
+            }
+        },
+        error: function(error) {
+          $.notify('Error verifying OTP', 'error');
+          $("#contact_otp_form").find('button[type="submit"]').prop('disabled', false);
+          $("#contact_otp_form").find('button[type="submit"]').html('Verify');
+        }
+    });
+  });
+
+  // Timer function for OTP
+  window.userTimerstartContact = function(time) {
+     var countDownDate = new Date().getTime() +  time * 60 * 1000;
+      var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        $('#contact_otp_form').find('.timer').html( minutes + ":" + seconds);
+        if (distance < 0) {
+          $('#contact_otp_form').find('.resend-otp-text').hide();
+          $('#contact_otp_form').find('.resend-otp-link').show();
+          $('#contact_otp_form').find('.timer').html("0:00");
+          clearInterval(x);
+          return false;
+        }
+      }, 1000);
+  }
+
+  // Resend OTP function
+  window.resendOTPContact = function() {
+    const mobile = $("#contact_otp_form").find('#hidden_mobile').val();
+    const full_name = $("#contact_otp_form").find('#hidden_full_name').val();
+    const question = $("#contact_otp_form").find('#hidden_question').val();
+    
+    $.ajax({
+        url:'<?php echo base_url(); ?>Home_public/sendOtp',
+        type: 'POST',
+        data : {
+            'phone_number' : mobile,
+            'full_name' : full_name,
+            'message' : question
+        },
+        dataType: 'JSON',
+        success:function(res){
+            if(res.status == 200){
+                $.notify('OTP resent successfully', 'success');
+                $('#contact_otp_form').find('.resend-otp-text').show();
+                $('#contact_otp_form').find('.resend-otp-link').hide();
+                userTimerstartContact(1);
+            }else{
+                $.notify(res.message || 'Failed to resend OTP', 'error');
+            }
+        },
+        error: function(error) {
+          $.notify('Error resending OTP', 'error');
+        }
+    });
+  }
 </script>

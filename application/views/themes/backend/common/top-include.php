@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/plugins/fontawesome/css/all.css">
+<!-- Font Awesome CDN Fallback -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/plugins/flaticon/fonts/flaticon.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/plugins/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/plugins/jquery-ui/css/jquery-ui.css">

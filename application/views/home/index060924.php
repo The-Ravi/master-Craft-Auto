@@ -664,20 +664,11 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
                           <label for="services">SELECT YOUR CAR SERVICE</label>
                           <select name="service" id="service" class="form-control form-select service" required>
                               <option value=""></option>
-                              <option value="Dent Beating and Painting">Dent Beating and Painting</option>
-                              <option value="Velocity Repai">Velocity Repair</option>
-                              <option value="Car Care Service">Car Care Service</option>
-                              <option value="Car Washing - Quick Wash">&nbsp;&nbsp;&nbsp;&nbsp;Car Washing - Quick Wash</option>
-                              <option value="Car Washing - Deep Cleaning">&nbsp;&nbsp;&nbsp;&nbsp;Car Washing - Deep Cleaning</option>
-                              <option value="Ceramic Coating">&nbsp;&nbsp;&nbsp;&nbsp;Ceramic Coating</option>
-                              <option value="Detailing - Interior and Exterior">&nbsp;&nbsp;&nbsp;&nbsp;Detailing - Interior and Exterior</option>
-                              <option value="Paint Protection Film (PPF)">&nbsp;&nbsp;&nbsp;&nbsp;Paint Protection Film (PPF)</option>
-                              <option value="Car Wax">&nbsp;&nbsp;&nbsp;&nbsp;Car Wax</option>
-                              <option value="Anti Rust Coating">&nbsp;&nbsp;&nbsp;&nbsp;Anti Rust Coating</option>
-                              <option value="Car Repair Service">Car Repair Service</option>
-                              <option value="Wheel Care">Wheel Care</option>
-                              <option value="Engine Care">Engine Care</option>
-                              <option value="Headlamp Restoration">Headlamp Restoration</option>
+                              <?php if(isset($service_category) && !empty($service_category)): ?>
+                                  <?php foreach($service_category as $category): ?>
+                                      <option value="<?php echo htmlspecialchars($category->cate_name); ?>"><?php echo htmlspecialchars($category->cate_name); ?></option>
+                                  <?php endforeach; ?>
+                              <?php endif; ?>
                           </select>
 
                         </div>
@@ -893,20 +884,11 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
                           <label for="services">SELECT YOUR CAR SERVICE</label>
                           <select name="service" id="service" class="form-control form-select service" required>
                               <option value=""></option>
-                              <option value="Dent Beating and Painting">Dent Beating and Painting</option>
-                              <option value="Velocity Repai">Velocity Repair</option>
-                              <option value="Car Care Service">Car Care Service</option>
-                              <option value="Car Washing - Quick Wash">&nbsp;&nbsp;&nbsp;&nbsp;Car Washing - Quick Wash</option>
-                              <option value="Car Washing - Deep Cleaning">&nbsp;&nbsp;&nbsp;&nbsp;Car Washing - Deep Cleaning</option>
-                              <option value="Ceramic Coating">&nbsp;&nbsp;&nbsp;&nbsp;Ceramic Coating</option>
-                              <option value="Detailing - Interior and Exterior">&nbsp;&nbsp;&nbsp;&nbsp;Detailing - Interior and Exterior</option>
-                              <option value="Paint Protection Film (PPF)">&nbsp;&nbsp;&nbsp;&nbsp;Paint Protection Film (PPF)</option>
-                              <option value="Car Wax">&nbsp;&nbsp;&nbsp;&nbsp;Car Wax</option>
-                              <option value="Anti Rust Coating">&nbsp;&nbsp;&nbsp;&nbsp;Anti Rust Coating</option>
-                              <option value="Car Repair Service">Car Repair Service</option>
-                              <option value="Wheel Care">Wheel Care</option>
-                              <option value="Engine Care">Engine Care</option>
-                              <option value="Headlamp Restoration">Headlamp Restoration</option>
+                              <?php if(isset($service_category) && !empty($service_category)): ?>
+                                  <?php foreach($service_category as $category): ?>
+                                      <option value="<?php echo htmlspecialchars($category->cate_name); ?>"><?php echo htmlspecialchars($category->cate_name); ?></option>
+                                  <?php endforeach; ?>
+                              <?php endif; ?>
                           </select>
 
                         </div>

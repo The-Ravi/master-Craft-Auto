@@ -74,43 +74,6 @@
     display: none;
 }
       </style>
-      <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1455382731734891');
-fbq('track', 'PageView');
-fbq('track', 'Lead');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MRV985XJKT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MRV985XJKT');
-</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16680467599">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-16680467599');
-</script>
    </head>
    <body>
       <!-- Navbar start -->
@@ -149,6 +112,20 @@ Email: info.mastercraftggn@nipponpaint.co.in</p>
      <?php $this->load->view('themes/frontend/common/footer', isset($tags) ? array('tags' => $tags) : array()); ?>
       <!-- Footer section end -->
     
+      <!-- Meta Pixel Conversion Event -->
+      <script>
+        fbq('track', 'Lead');
+      </script>
+      
+      <!-- Event snippet for Purchase conversion page -->
+      <script>
+        gtag('event', 'conversion', {
+            'send_to': 'AW-10865517213/Vd6gCNChocQbEJ3Fir0o',
+            'value': 1.0,
+            'currency': 'INR',
+            'transaction_id': ''
+        });
+      </script>
        
    </body>
 </html>
