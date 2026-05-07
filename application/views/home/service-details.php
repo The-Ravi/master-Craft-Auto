@@ -396,7 +396,7 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
                                 <option value=""></option>
                                 <?php if(isset($service_category) && !empty($service_category)): ?>
                                   <?php foreach($service_category as $category): ?>
-                                    <option value="<?php echo htmlspecialchars($category->cate_name); ?>"><?php echo htmlspecialchars($category->cate_name); ?></option>
+                                    <option value="<?php echo htmlspecialchars($category->cate_name); ?>" data-service-id="<?php echo (int)$category->id; ?>"><?php echo htmlspecialchars($category->cate_name); ?></option>
                                   <?php endforeach; ?>
                                 <?php endif; ?>
                               </select>
@@ -1084,6 +1084,7 @@ src="https://www.facebook.com/tr?id=1455382731734891&ev=PageView&noscript=1"
                         <input type="hidden" name="" id="mobile">
                         <input type="hidden" name="" id="message">
                         <input type="hidden" name="" id="service">
+                        <input type="hidden" name="" id="service_id">
                       </div>
                       <div class="resend-otp1" style="display: flex;gap:10px;">
                         <span class="resend-otp-text">
@@ -1434,6 +1435,7 @@ $(document).ready(function() {
       
       const phone_number = $form.find('.phone_number').val();
       const service = $form.find('.service').val();
+      const service_id = $form.find('.service option:selected').data('service-id') || '';
       const brand_id = $form.find('.brand_id').val();
       const modal_id = $form.find('.modal_id').val();
       const petrol_type = $form.find('.petrol_type').val() || '';
@@ -1454,6 +1456,7 @@ $(document).ready(function() {
           data : {
               'phone_number' : phone_number,
               'service' : service,
+              'service_id' : service_id,
               'message' : message,
               'brand_id' : brand_id || '',
               'modal_id' : modal_id || '',
@@ -1477,6 +1480,7 @@ $(document).ready(function() {
                 $("#createbookingOtpPopup").find('.entered_phone_no').html(phone_number);
                 $("#createbookingOtpPopup").find('#mobile').val(phone_number);
                 $("#createbookingOtpPopup").find('#service').val(service);
+                $("#createbookingOtpPopup").find('#service_id').val(service_id || '');
                 $("#createbookingOtpPopup").find('#message').val(message);
                 $("#createbookingOtpPopup").find('#brand_id').val(brand_id || '');
                 $("#createbookingOtpPopup").find('#modal_id').val(modal_id || '');
@@ -1566,6 +1570,7 @@ $(document).ready(function() {
       const phone_number = $("#contact_formPop").find('.phone_number').val();
       const service_category = $("#contact_formPop").find('.service_category').val();
       const service = $("#contact_formPop").find('.service').val();
+      const service_id = $("#contact_formPop").find('.service option:selected').data('service-id') || '';
       const brand_id = $("#contact_formPop").find('.brand_id').val();
       const modal_id = $("#contact_formPop").find('.modal_id').val();
       const full_name = $("#contact_formPop").find('.full_name').val() || '';
@@ -1585,6 +1590,7 @@ $(document).ready(function() {
           data : {
               'phone_number' : phone_number,
               'service' : service || service_category,
+              'service_id' : service_id,
               'message' : 'Booking request for ' + (service || service_category),
               'brand_id' : brand_id || '',
               'modal_id' : modal_id || '',
@@ -1603,6 +1609,7 @@ $(document).ready(function() {
                 $("#createbookingOtpPopup").find('.entered_phone_no').html(phone_number);
                 $("#createbookingOtpPopup").find('#mobile').val(phone_number);
                 $("#createbookingOtpPopup").find('#service').val(service || service_category);
+                $("#createbookingOtpPopup").find('#service_id').val(service_id || '');
                 $("#createbookingOtpPopup").find('#message').val('Booking request for ' + (service || service_category));
                 $("#createbookingOtpPopup").find('#brand_id').val(brand_id || '');
                 $("#createbookingOtpPopup").find('#modal_id').val(modal_id || '');
@@ -1633,6 +1640,7 @@ $(document).ready(function() {
     const phone_number = $("#createbookingOtpPopup").find('#mobile').val();
     const message = $("#createbookingOtpPopup").find('#message').val();
     const service = $("#createbookingOtpPopup").find('#service').val();
+    const service_id = $("#createbookingOtpPopup").find('#service_id').val();
     const brand_id = $("#createbookingOtpPopup").find('#brand_id').val();
     const modal_id = $("#createbookingOtpPopup").find('#modal_id').val();
     const petrol_type = $("#createbookingOtpPopup").find('#petrol_type').val() || '';
@@ -1655,6 +1663,7 @@ $(document).ready(function() {
             'phone_number' : phone_number,
             'message' : message,
             'service' : service,
+            'service_id' : service_id || '',
             'brand_id' : brand_id || '',
             'modal_id' : modal_id || '',
             'petrol_type' : petrol_type || '',

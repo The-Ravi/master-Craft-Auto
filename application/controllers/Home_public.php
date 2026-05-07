@@ -280,33 +280,29 @@ class Home_public extends MX_Controller
 
             if ($post = $this->input->post()) {
 
-               
-
-                $brand_id = isset($post["brand_id"]) ? $post["brand_id"] : "";
+                $brand_id = isset($post["brand_id"]) ? trim($post["brand_id"]) : "";
                 $brand_name = !empty($brand_id) ? $this->brandNameById($brand_id) : "";
 
-                $modal_id = isset($post["modal_id"]) ? $post["modal_id"] : "";
+                $modal_id = isset($post["modal_id"]) ? trim($post["modal_id"]) : "";
                 $modal_name = !empty($modal_id) ? $this->modalNameById($modal_id) : "";
 
-                $petrol_type = isset($post["petrol_type"]) ? $post["petrol_type"] : "";
+                $petrol_type = isset($post["petrol_type"]) ? trim($post["petrol_type"]) : "";
+                $full_name = isset($post["full_name"]) ? trim($post["full_name"]) : "";
+                $mobile = isset($post["phone_number"]) ? trim($post["phone_number"]) : "";
+                $message = isset($post["message"]) ? trim($post["message"]) : "";
+                $service = isset($post["service"]) ? trim($post["service"]) : "";
+                $service_id_input = isset($post["service_id"]) ? trim($post["service_id"]) : "";
+                $otp = isset($post["otp"]) ? trim($post["otp"]) : "";
 
-                $full_name = $post["full_name"];
-
-
-
-                $mobile = $post["phone_number"];
-
-
-
-                $message = $post["message"];
-
-
-
-                $service = $post["service"];
-
-
-
-                $otp = $post["otp"];
+                if ($mobile === "" || $full_name === "" || $service === "" || $otp === "") {
+                    return $this->output
+                        ->set_status_header(Http::BAD_REQUEST)
+                        ->set_content_type("application/json")
+                        ->set_output(json_encode([
+                            "status" => Http::BAD_REQUEST,
+                            "message" => "Missing required fields"
+                        ]));
+                }
 
                 // OTP BYPASS: If OTP is 'bypass', skip verification
                 $otp_valid = false;
@@ -331,15 +327,25 @@ class Home_public extends MX_Controller
                 }
 
                 if ($otp_valid) {
-                    // Get service_id from service category name
-                    $service_data = $this->db->select('id')->where('tittle', $service)->or_where('cate_name', $service)->get('cr_services')->row();
-                    $service_id = $service_data ? $service_data->id : null;
+                    // Resolve service id from service name/service id payload
+                    $service_id = $this->resolveServiceId($service, $service_id_input);
+
+                    if (!$service_id) {
+                        log_message('error', 'Service not found for: ' . $service);
+                        return $this->output
+                            ->set_status_header(Http::BAD_REQUEST)
+                            ->set_content_type("application/json")
+                            ->set_output(json_encode([
+                                "status" => Http::BAD_REQUEST,
+                                "message" => "Service not found"
+                            ]));
+                    }
 
                     // Create order in cr_order table
                     $order_data = [
                         'mobile' => $mobile,
-                        'brand_id' => $brand_id,
-                        'modal_id' => $modal_id,
+                        'brand_id' => $brand_id !== "" ? $brand_id : null,
+                        'modal_id' => $modal_id !== "" ? $modal_id : null,
                         'petrol_type' => $petrol_type,
                         'full_name' => $full_name,
                         'message' => $message,
@@ -349,14 +355,33 @@ class Home_public extends MX_Controller
                     $this->db->insert('cr_order', $order_data);
                     $order_id = $this->db->insert_id();
 
+                    if (!$order_id) {
+                        log_message('error', 'Failed to insert order: ' . $this->db->error()['message']);
+                        return $this->output
+                            ->set_status_header(Http::BAD_REQUEST)
+                            ->set_content_type("application/json")
+                            ->set_output(json_encode([
+                                "status" => Http::BAD_REQUEST,
+                                "message" => "Failed to create order"
+                            ]));
+                    }
+
                     // Create order details in cr_order_details table
-                    if ($service_id && $order_id) {
-                        $order_details = [
-                            'order_id' => $order_id,
-                            'service_id' => $service_id,
-                            'status' => 1
-                        ];
-                        $this->db->insert('cr_order_details', $order_details);
+                    $order_details = [
+                        'order_id' => $order_id,
+                        'service_id' => $service_id,
+                        'status' => 1
+                    ];
+                    $this->db->insert('cr_order_details', $order_details);
+                    if (!$this->db->affected_rows()) {
+                        log_message('error', 'Failed to insert order details: ' . $this->db->error()['message']);
+                        return $this->output
+                            ->set_status_header(Http::BAD_REQUEST)
+                            ->set_content_type("application/json")
+                            ->set_output(json_encode([
+                                "status" => Http::BAD_REQUEST,
+                                "message" => "Failed to create order details"
+                            ]));
                     }
 
                     // Try to send email, but don't fail if it doesn't work
@@ -376,33 +401,13 @@ class Home_public extends MX_Controller
                         log_message('error', 'Email send failed: ' . $e->getMessage());
                     }
 
-
-
                     return $this->output
-
                         ->set_status_header(Http::OK)
-
-
-
                         ->set_content_type("application/json")
-
-
-
-                        ->set_output(
-
-                            json_encode([
-
-                                "status" => Http::OK,
-
-
-
-                                "message" =>
-
-                                    "Your request submitted successfully",
-
-                            ])
-
-                        );
+                        ->set_output(json_encode([
+                            "status" => Http::OK,
+                            "message" => "Your request submitted successfully"
+                        ]));
 
                 } else {
 
@@ -480,7 +485,7 @@ class Home_public extends MX_Controller
 
 
 
-                        "message" => $e,
+                        "message" => $e->getMessage(),
 
                     ])
 
@@ -488,6 +493,50 @@ class Home_public extends MX_Controller
 
         }
 
+    }
+
+    private function resolveServiceId($service_name = "", $service_id = "")
+    {
+        if (!empty($service_id) && ctype_digit((string)$service_id)) {
+            $service_row = $this->db
+                ->select('id')
+                ->where('id', (int)$service_id)
+                ->get('cr_services')
+                ->row();
+            if ($service_row) {
+                return (int)$service_row->id;
+            }
+        }
+
+        if ($service_name === "") {
+            return null;
+        }
+
+        $service_row = $this->db
+            ->select('id')
+            ->group_start()
+                ->where('cate_name', $service_name)
+                ->or_where('tittle', $service_name)
+                ->or_where('inner_title', $service_name)
+            ->group_end()
+            ->get('cr_services')
+            ->row();
+
+        if ($service_row) {
+            return (int)$service_row->id;
+        }
+
+        $service_row = $this->db
+            ->select('id')
+            ->group_start()
+                ->like('cate_name', $service_name)
+                ->or_like('tittle', $service_name)
+                ->or_like('inner_title', $service_name)
+            ->group_end()
+            ->get('cr_services')
+            ->row();
+
+        return $service_row ? (int)$service_row->id : null;
     }
 
 
